@@ -18,6 +18,12 @@ class Hub(models.Model):
     def lots(self):
         return self.lot_set.order_by('position')
     
+    def who_is_here(self):
+        players = set()
+        for location in Location.objects.filter(hub=self, lot__isnull=True, visible=True):
+            players = players.union(location.player_set.all())
+        return players
+    
     def __unicode__(self):
         return self.name
     
@@ -59,7 +65,7 @@ class Road(models.Model):
 
 class Lot(models.Model):
     
-    hub = models.ForeignKey('Hub')
+    hub = models.ForeignKey(Hub)
     
     # 0 thru 7
     position = models.IntegerField(choices = [(i, str(i)) for i in range(8)])
@@ -82,3 +88,22 @@ class Lot(models.Model):
     
     class Admin:
         pass
+
+
+class Location(models.Model):
+    
+    hub = models.ForeignKey(Hub)
+    lot = models.ForeignKey(Lot, null=True)
+    visible = models.BooleanField(default=True)
+    
+    def move_to_lot(self, lot):
+        self.lot = lot
+        self.hub = lot.hub
+        self.save()
+    
+    def move_to_hub(self, hub):
+        self.hub = hub
+        self.lot = None
+        self.save()
+    
+    

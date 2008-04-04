@@ -39,5 +39,17 @@
 <p>No lots here.</p>
 {% endif %}
 
+<h2>Who's Here</h2>
+
+{% if hub.who_is_here %}
+<ul>
+    {% for player in hub.who_is_here %}
+    <li>{{ player}}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No one else.</p>
+{% endif %}
+
 
 {% endblock %}
