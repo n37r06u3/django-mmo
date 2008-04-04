@@ -112,4 +112,8 @@ class Location(models.Model):
         self.lot = None
         self.save()
     
-    
+    def __unicode__(self):
+        if self.lot:
+            return "%s in %s" % (self.lot.name, self.hub.name)
+        else:
+            return self.hub.name
