@@ -15,6 +15,9 @@ class Hub(models.Model):
             r.append({"direction": road.direction_one_from_two(), "destination": road.hub_one})
         return r
     
+    def lots(self):
+        return self.lot_set.order_by('position')
+    
     def __unicode__(self):
         return self.name
     
@@ -58,8 +61,8 @@ class Lot(models.Model):
     
     hub = models.ForeignKey('Hub')
     
-    # 1 through 8
-    position = models.IntegerField(choices = [(i, str(i)) for i in range(1, 9)])
+    # 0 thru 7
+    position = models.IntegerField(choices = [(i, str(i)) for i in range(8)])
     
     name = models.CharField(max_length=20)
     description = models.TextField()
