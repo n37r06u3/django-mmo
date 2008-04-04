@@ -1,0 +1,7 @@
+<p>This will eventually be an admin-only view.</p>
+<h1>Hubs</h1>
+<ul>
+    {% for hub in hub_list %}
+    <li><a href="{{ hub.id }}/">{{ hub }}</li>
+    {% endfor %}
+</ul>

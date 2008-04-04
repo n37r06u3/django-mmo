@@ -1,8 +1,7 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
-    # Example:
-    # (r'^mmo/', include('mmo.foo.urls')),
+    (r'^map/', include('mmo.map.urls')),
     
-     (r'^admin/', include('django.contrib.admin.urls')),
+    (r'^admin/', include('django.contrib.admin.urls')),
 )
