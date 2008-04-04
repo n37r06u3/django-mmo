@@ -53,3 +53,29 @@ class Road(models.Model):
     class Admin:
         pass
 
+
+class Lot(models.Model):
+    
+    hub = models.ForeignKey('Hub')
+    
+    # 1 through 8
+    position = models.IntegerField(choices = [(i, str(i)) for i in range(1, 9)])
+    
+    name = models.CharField(max_length=20)
+    description = models.TextField()
+    
+    # @@@ initially no houses
+    kind = models.CharField(max_length=1, choices = (('A', 'accessible'), ('I', 'inaccessible')))
+    
+    # @@@ eventually will have an image too
+    
+    class Meta:
+        unique_together = (
+            ('hub', 'position'),
+        )
+    
+    def __unicode__(self):
+        return self.name
+    
+    class Admin:
+        pass
