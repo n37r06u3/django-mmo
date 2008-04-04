@@ -1,0 +1,10 @@
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <p>This is an admin page that will not be available to normal users in the real game.</p>
+        {% block admin_page_content %}
+        {% endblock %}
+    </body>
+</html>

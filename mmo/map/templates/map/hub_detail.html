@@ -1,4 +1,9 @@
-<p>This will eventually be an admin-only view.</p>
+{% extends 'admin_base.html' %}
+
+{% block title %}Hub: {{ hub }}{% endblock %}
+
+
+{% block admin_page_content %}
 <p><a href="../">hubs</a></p>
 
 <h1>{{ hub.name }}</h1>
@@ -15,3 +20,5 @@
 {% else %}
 <p>No roads out of here.</p>
 {% endif %}
+
+{% endblock %}
