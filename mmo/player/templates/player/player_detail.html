@@ -1,0 +1,86 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}Player: {{ player }}{% endblock %}
+
+{% block admin_page_content %}
+
+<p>The intention of this page is it gives you the entire game from {{ player.name }}'s perspective. When {{ player.name }} is logged in, he or she will see something similar to this.</p>
+
+<p><a href="../">players</a></p>
+
+<h1>{{ player.name }}</h1>
+
+{% if player.location.lot %}
+    <h2>{{ player.location.lot.name }}</h2>
+    <p>{{ player.location.lot.description }}</p>
+    
+    <p>back to <b>{{ player.location.lot.hub }}</b>.
+        <form method="POST" action="">
+            <input type="hidden" name="exit_to" value="{{ player.location.lot.hub.id}}" />
+            <input type="submit" value="go" />
+        </form>
+    </p>
+        
+    <h2>Who's Here</h2>
+    
+    <ul>
+        {% for other_player in player.location.lot.who_is_here %}
+        <li>{{ other_player}}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    
+    <h2>{{ player.location.hub.name }}</h2>
+    <p>{{ player.location.hub.description }}</p>
+    
+    <h3>Roads</h3>
+    
+    {% if player.location.hub.roads %}
+    <ul>
+        {% for road in player.location.hub.roads %}
+        <li>{{ road.direction }} to <b>{{ road.destination }}</b>
+            <form method="POST" action="">
+                <input type="hidden" name="travel_to" value="{{ road.destination.id}}" />
+                <input type="submit" value="go" />
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No roads out of here.</p>
+    {% endif %}
+    
+    <h3>Lots</h3>
+    
+    {% if player.location.hub.lots %}
+    <ul>
+        {% for lot in player.location.hub.lots %}
+        <li>{{ lot.position }}. 
+            {% ifequal lot.kind "A" %}
+            <b>{{ lot.name }}</b>
+            <form method="POST" action="">
+                <input type="hidden" name="enter" value="{{ lot.id}}" />
+                <input type="submit" value="go" />
+            </form>
+            {% else %}
+            <b>{{ lot.name }}</b>
+            {% endifequal %}
+            {{ lot.description }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No lots here.</p>
+    {% endif %}
+    
+    <h3>Who's Here</h3>
+    
+    <ul>
+        {% for other_player in player.location.hub.who_is_here %}
+        <li>{{ other_player}}</li>
+        {% endfor %}
+    </ul>
+    
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}Players{% endblock %}
+
+{% block admin_page_content %}
+<h1>Players</h1>
+<ul>
+    {% for player in player_list %}
+    <li><a href="{{ player.id }}/">{{ player }}</a> ({{ player.location }})</li>
+    {% endfor %}
+</ul>
+{% endblock %}
