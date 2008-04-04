@@ -2,7 +2,7 @@ from django.db import models
 
 class Hub(models.Model):
     
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=30)
     description = models.TextField()
     
     # @@@ eventually this will have an x, y location for the visual map
