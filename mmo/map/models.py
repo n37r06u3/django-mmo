@@ -78,6 +78,12 @@ class Lot(models.Model):
     
     # @@@ eventually will have an image too
     
+    def who_is_here(self): # @@@ can't wait for model inheritance
+        players = set()
+        for location in Location.objects.filter(lot=self, visible=True):
+            players = players.union(location.player_set.all())
+        return players
+    
     class Meta:
         unique_together = (
             ('hub', 'position'),
