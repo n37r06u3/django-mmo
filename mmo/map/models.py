@@ -7,6 +7,14 @@ class Hub(models.Model):
     
     # @@@ eventually this will have an x, y location for the visual map
     
+    def roads(self):
+        r = []
+        for road in self.roads_one.all():
+            r.append({"direction": road.direction_two_from_one, "destination": road.hub_two})
+        for road in self.roads_two.all():
+            r.append({"direction": road.direction_one_from_two(), "destination": road.hub_one})
+        return r
+    
     def __unicode__(self):
         return self.name
     
