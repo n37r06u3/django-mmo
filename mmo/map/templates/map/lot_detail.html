@@ -1,0 +1,17 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}Lot: {{ lot }}{% endblock %}
+
+
+{% block admin_page_content %}
+
+{% ifequal lot.kind "I" %}
+<p>This lot would normally be inaccessible.</p>
+{% endifequal %}
+
+<h1>{{ lot.name }}</h1>
+<p>{{ lot.description }}</p>
+
+<p>back to <a href="../../hub/{{ lot.hub.id }}/">{{ lot.hub }}</a>.
+
+{% endblock %}

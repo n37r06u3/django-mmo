@@ -21,4 +21,23 @@
 <p>No roads out of here.</p>
 {% endif %}
 
+<h2>Lots</h2>
+
+{% if hub.lots %}
+<ul>
+    {% for lot in hub.lots %}
+    <li>{{ lot.position }}. 
+        {% ifequal lot.kind "A" %}
+        <a href="../../lot/{{ lot.id }}/"><b>{{ lot.name }}</b></a>
+        {% else %}
+        <b>{{ lot.name }}</b>
+        {% endifequal %}
+        {{ lot.description }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No lots here.</p>
+{% endif %}
+
+
 {% endblock %}
