@@ -4,9 +4,25 @@
 
 {% block admin_page_content %}
 <h1>Players</h1>
+
+<p>Click a player to play them, or add a new player.</p>
+
 <ul>
     {% for player in player_list %}
     <li><a href="{{ player.id }}/">{{ player }}</a> ({{ player.location }})</li>
     {% endfor %}
 </ul>
+
+<h2>Add New Player</h2>
+
+<form method="POST" action="">
+    Name: <input type="text" name="name" size="30" maxlength="20" /><br />
+    Start Hub: <select name="start_hub">
+    {% for hub in hubs %}
+        <option value="{{ hub.id }}">{{ hub }}</option>
+    {% endfor %}
+    </select>
+    <br />
+    <input type="submit" value="add" />
+</form>
 {% endblock %}

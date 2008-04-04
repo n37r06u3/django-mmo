@@ -3,6 +3,25 @@ from django.shortcuts import render_to_response, get_object_or_404
 from models import Player
 from map.models import *
 
+def player_list(request):
+    
+    if request.POST:
+        name = request.POST["name"]
+        start_hub_id = request.POST["start_hub"]
+        hub = Hub.objects.get(id=start_hub_id)
+        location = Location(hub=hub)
+        location.save()
+        player = Player(name=name, location=location)
+        player.save()
+    
+    player_list = Player.objects.all()
+    hubs = Hub.objects.all()
+    
+    return render_to_response("player/player_list.html", {
+        "player_list": player_list,
+        "hubs": hubs,
+    })
+
 def player_view(request, player_id):
     player = get_object_or_404(Player, id=player_id)
     
