@@ -1,3 +1,17 @@
 <p>This will eventually be an admin-only view.</p>
 <p><a href="../">hubs</a></p>
-<h1>{{ hub }}</h1>
+
+<h1>{{ hub.name }}</h1>
+<p>{{ hub.description }}</p>
+
+<h2>Roads</h2>
+
+{% if hub.roads %}
+<ul>
+    {% for road in hub.roads %}
+    <li>{{ road.direction }} to <a href="../{{ road.destination.id }}/">{{ road.destination }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No roads out of here.</p>
+{% endif %}
