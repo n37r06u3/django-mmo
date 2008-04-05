@@ -98,6 +98,19 @@
     <p>Nothing here.</p>
     {% endif %}
     
+    
+    <h2>Inventory</h2>
+    
+    {% if player.inventory %}
+    <ul>
+        {% for pile in player.inventory %}
+        <li>{{ pile.item_type }} [{{ pile.quantity }}]</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Nothing.</p>
+    {% endif %}
+    
 {% endif %}
 
 
