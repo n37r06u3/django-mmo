@@ -29,6 +29,9 @@ class Hub(models.Model):
     def what_is_here(self):
         return LocationPile.objects.filter(hub=self, lot__isnull=True)
     
+    def drop_here(self, item_type, quantity):
+        pile, created = LocationPile.objects.get_or_create(item_type=item_type, hub=self, lot__isnull=True, defaults={'quantity': 0})
+        return pile.increase(quantity)
     
     def __unicode__(self):
         return self.name

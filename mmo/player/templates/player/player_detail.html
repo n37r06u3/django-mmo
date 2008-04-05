@@ -104,7 +104,13 @@
     {% if player.inventory %}
     <ul>
         {% for pile in player.inventory %}
-        <li>{{ pile.item_type }} [{{ pile.quantity }}]</li>
+        <li>{{ pile.item_type }} [{{ pile.quantity }}]<br />
+            <form method="POST" action="">
+                drop <input type="hidden" name="drop_pile" value="{{ pile.id }}" />
+            {% for q in pile.drop_list %}
+                <input type="submit" name="quantity" value="{{ q }}" />
+            {% endfor %}
+        </li>
         {% endfor %}
     </ul>
     {% else %}

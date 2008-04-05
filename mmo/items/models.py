@@ -27,6 +27,18 @@ class InventoryPile(models.Model): # @@@ longing for model inheritance
     
     player = models.ForeignKey('player.Player')
     
+    def drop_list(self):
+        # utility method for enumerating possible quantities that can be dropped from this pile
+        return [quantity for quantity in [1, 2, 5, 10, 25, 50, 100] if quantity < self.quantity] + [self.quantity]
+    
+    def reduce(self, quantity):
+        q = min(self.quantity, quantity)
+        self.quantity -= q
+        self.save()
+        if self.quantity == 0:
+            self.delete()
+        return q
+    
     def increase(self, quantity):
         self.quantity += quantity
         self.save()
@@ -70,6 +82,11 @@ class LocationPile(models.Model): # @@@ longing for model inheritance
         if self.quantity == 0:
             self.delete()
         return q
+    
+    def increase(self, quantity):
+        self.quantity += quantity
+        self.save()
+        return self.quantity
     
     def location_display(self):
         if self.lot:
