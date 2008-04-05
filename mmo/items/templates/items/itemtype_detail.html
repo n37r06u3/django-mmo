@@ -1,0 +1,36 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}Item Type: {{ itemtype }}{% endblock %}
+
+{% block admin_page_content %}
+<p><a href="../">item types</a></p>
+
+<h1>{{ itemtype.name }}</h1>
+<p>{{ itemtype.description }}</p>
+
+<h2>Inventory Piles</h2>
+
+{% if itemtype.inventorypile_set.all %}
+<ul>
+    {% for pile in itemtype.inventorypile_set.all %}
+    <li>{{ pile }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No inventories contain this item type.</p>
+{% endif %}
+
+
+<h2>Location Piles</h2>
+
+{% if itemtype.locationpile_set.all %}
+<ul>
+    {% for pile in itemtype.locationpile_set.all %}
+    <li>{{ pile }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No locations contain this item type.</p>
+{% endif %}
+
+{% endblock %}

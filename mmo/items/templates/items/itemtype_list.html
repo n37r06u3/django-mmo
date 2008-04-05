@@ -1,0 +1,21 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}Item Types{% endblock %}
+
+{% block admin_page_content %}
+<h1>Item Types</h1>
+
+<ul>
+    {% for itemtype in itemtype_list %}
+    <li><a href="{{ itemtype.id }}/">{{ itemtype.name }}</a></li>
+    {% endfor %}
+</ul>
+
+<h2>Add New Item Type</h2>
+
+<form method="POST" action="">
+    Name: <input type="text" name="name" size="30" maxlength="20" /><br />
+    Description: <textarea name="description"></textarea><br />
+    <input type="submit" value="add" />
+</form>
+{% endblock %}
