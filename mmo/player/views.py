@@ -50,7 +50,7 @@ def player_view(request, player_id):
             pile = LocationPile.objects.get(id=pile_id)
             quantity = int(request.POST["quantity"])
             pile.reduce(quantity)
-            # @@@ add to inventory
+            player.add_to_inventory(pile.item_type, quantity)
             
     return render_to_response("player/player_detail.html", {
         "player": player,
