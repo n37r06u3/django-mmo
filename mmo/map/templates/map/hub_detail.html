@@ -51,5 +51,17 @@
 <p>No one else.</p>
 {% endif %}
 
+<h2>What's Here</h2>
+
+{% if player.location.hub.what_is_here %}
+<ul>
+    {% for pile in player.location.hub.what_is_here %}
+    <li>{{ pile.item_type }} [{{ pile.quantity }}]</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Nothing here.</p>
+{% endif %}
+
 
 {% endblock %}
