@@ -80,4 +80,5 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'mmo.map',
     'mmo.player',
+    'mmo.items',
 )
