@@ -93,6 +93,13 @@ class Lot(models.Model):
             players = players.union(location.player_set.all())
         return players
     
+    def what_is_here(self):
+        return LocationPile.objects.filter(lot=self)
+    
+    def drop_here(self, item_type, quantity):
+        pile, created = LocationPile.objects.get_or_create(item_type=item_type, hub=self.hub, lot=self, defaults={'quantity': 0})
+        return pile.increase(quantity)
+    
     class Meta:
         unique_together = (
             ('hub', 'position'),

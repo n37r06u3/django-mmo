@@ -54,11 +54,11 @@ def player_view(request, player_id):
         elif "drop_pile" in request.POST:
             # @@@ check pile belongs to player and quantity is valid
             pile_id = request.POST["drop_pile"]
-            pile = InventoryPile.objects.get(id=pile_id)
+            pile = InventoryPile.objects.get(id=pile_id) # @@@ will throw exception if quantity not checked
             quantity = int(request.POST["quantity"])
             pile.reduce(quantity)
             if player.location.lot:
-                pass # @@@
+                player.location.lot.drop_here(pile.item_type, quantity)
             else:
                 player.location.hub.drop_here(pile.item_type, quantity)
             

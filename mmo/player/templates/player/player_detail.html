@@ -14,20 +14,39 @@
     <h2>{{ player.location.lot.name }}</h2>
     <p>{{ player.location.lot.description }}</p>
     
-    <p>back to <b>{{ player.location.lot.hub }}</b>.
-        <form method="POST" action="">
+    <form method="POST" action="">
+    <p>back to <b>{{ player.location.lot.hub }}</b>
             <input type="hidden" name="exit_to" value="{{ player.location.lot.hub.id}}" />
             <input type="submit" value="go" />
-        </form>
     </p>
+    </form>
         
-    <h2>Who's Here</h2>
+    <h3>Who's Here</h3>
     
     <ul>
         {% for other_player in player.location.lot.who_is_here %}
         <li>{{ other_player}}</li>
         {% endfor %}
     </ul>
+    
+    <h3>What's Here</h3>
+    
+    {% if player.location.lot.what_is_here %}
+    <ul>
+        {% for pile in player.location.lot.what_is_here %}
+        <li>{{ pile.item_type }} [{{ pile.quantity }}]<br />
+            <form method="POST" action="">
+                pick up <input type="hidden" name="pickup_pile" value="{{ pile.id }}" />
+            {% for q in pile.pickup_list %}
+                <input type="submit" name="quantity" value="{{ q }}" />
+            {% endfor %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Nothing here.</p>
+    {% endif %}
+    
 {% else %}
     
     <h2>{{ player.location.hub.name }}</h2>
@@ -98,25 +117,25 @@
     <p>Nothing here.</p>
     {% endif %}
     
-    
-    <h2>Inventory</h2>
-    
-    {% if player.inventory %}
-    <ul>
-        {% for pile in player.inventory %}
-        <li>{{ pile.item_type }} [{{ pile.quantity }}]<br />
-            <form method="POST" action="">
-                drop <input type="hidden" name="drop_pile" value="{{ pile.id }}" />
-            {% for q in pile.drop_list %}
-                <input type="submit" name="quantity" value="{{ q }}" />
-            {% endfor %}
-        </li>
+{% endif %}
+
+
+<h2>Inventory</h2>
+
+{% if player.inventory %}
+<ul>
+    {% for pile in player.inventory %}
+    <li>{{ pile.item_type }} [{{ pile.quantity }}]<br />
+        <form method="POST" action="">
+            drop <input type="hidden" name="drop_pile" value="{{ pile.id }}" />
+        {% for q in pile.drop_list %}
+            <input type="submit" name="quantity" value="{{ q }}" />
         {% endfor %}
-    </ul>
-    {% else %}
-    <p>Nothing.</p>
-    {% endif %}
-    
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Nothing.</p>
 {% endif %}
 
 
