@@ -80,6 +80,24 @@
         {% endfor %}
     </ul>
     
+    <h3>What's Here</h3>
+    
+    {% if player.location.hub.what_is_here %}
+    <ul>
+        {% for pile in player.location.hub.what_is_here %}
+        <li>{{ pile.item_type }} [{{ pile.quantity }}]<br />
+            <form method="POST" action="">
+                pick up <input type="hidden" name="pickup_pile" value="{{ pile.id }}" />
+            {% for q in pile.pickup_list %}
+                <input type="submit" name="quantity" value="{{ q }}" />
+            {% endfor %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Nothing here.</p>
+    {% endif %}
+    
 {% endif %}
 
 

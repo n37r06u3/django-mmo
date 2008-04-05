@@ -1,5 +1,7 @@
 from django.db import models
 
+from items.models import LocationPile
+
 class Hub(models.Model):
     
     name = models.CharField(max_length=30)
@@ -23,6 +25,10 @@ class Hub(models.Model):
         for location in Location.objects.filter(hub=self, lot__isnull=True, visible=True):
             players = players.union(location.player_set.all())
         return players
+    
+    def what_is_here(self):
+        return LocationPile.objects.filter(hub=self, lot__isnull=True)
+    
     
     def __unicode__(self):
         return self.name
