@@ -5,6 +5,7 @@
 {% block extra_head %}
     <style>
     table.game_screen {
+        width: 800px;
         border-spacing: 0;
     }
     table.game_screen td {
@@ -14,9 +15,20 @@
     tr.top_bar {
         background: #5C8699;
     }
-    tr.top_bar td {
+    .control_panel {
+        width: 280px;
+        margin: 0;
+        padding: 5px 40px 5px 5px;
+    }
+    .user_info {
+        width: 200px;
         margin: 0;
         padding: 5px;
+    }
+    .user_statistics {
+        width: 320px;
+        margin: 0;
+        padding: 5px 5px 5px 40px;
     }
     .control_panel p {
         margin: 0;
@@ -24,6 +36,7 @@
     }
     .control_panel a {
         color: #FFF;
+        font-weight: bold;
         text-decoration: none;
     }
     .control_panel h1 {
@@ -47,8 +60,13 @@
         font-weight: bold;
         color: #FFF595;
     }
-    .user_statistics {
+    .user_statistics table {
+    }
+    .user_statistics td {
         color: #FFF;
+    }
+    .user_statistics .stat {
+        text-align: right;
     }
     </style>
 {% endblock %}
@@ -64,21 +82,23 @@
     <table class="game_screen">
         
         <tr class="top_bar">
-            <td width="280" class="control_panel">
-                <p><a href=""><b>Refresh</b></a> |
-                <b>Report a bug</b> |
-                <b>Save &amp; Exit</b></p>
+            <td class="control_panel">
+                <p><a href="">Refresh</a> |
+                Report a bug |
+                Save &amp; Exit</p>
                 <h1>DJANGO-MMO</h1>
             </td>
-            <td width="200" class="user_info">
+            <td class="user_info">
                 <span class="player_name">{{ player.name }}</span> $ <span class="player_balance">{{ player.balance }}</span><br />
                 Level <b>{{ player.level }}</b> - xp: <b>{{ player.xp }}</b><br />
                 (next level at {{ player.next_level_at }})
             </td>
-            <td width="320" class="user_statistics">
-                <b>energy</b> [@@@] {{ player.energy }}/5000<br />
-                <b>mood</b> [@@@] {{ player.mood }}/200<br />
-                <b>karma</b> [@@@] {{ player.karma }}/200<br />
+            <td class="user_statistics">
+                <table>
+                    <tr><td class="stat"><b>energy</b></td><td width="150">[@@@]</td><td>{{ player.energy }}/5000</td></tr>
+                    <tr><td class="stat"><b>mood</b></td><td>[@@@]</td><td>{{ player.mood }}/200</td></tr>
+                    <tr><td class="stat"><b>karma</b></td><td>[@@@]</td><td>{{ player.karma }}/200</td></tr>
+                </table>
             </td>
         </tr>
         
