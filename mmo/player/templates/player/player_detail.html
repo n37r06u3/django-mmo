@@ -2,6 +2,15 @@
 
 {% block title %}Player: {{ player }}{% endblock %}
 
+{% block extra_head %}
+    <style>
+    table.game_screen td {
+        font-family: Verdana;
+        font-size: 8pt;
+    }
+    </style>
+{% endblock %}
+
 {% block admin_page_content %}
     
     <p>The intention of this page is it gives you the entire game from {{ player.name }}'s perspective. When {{ player.name }} is logged in, he or she will see something similar to this.</p>
@@ -10,7 +19,7 @@
     
     <h1>{{ player.name }}</h1>
     
-    <table>
+    <table class="game_screen">
         
         <tr>
             <td valign="top" width="280">
