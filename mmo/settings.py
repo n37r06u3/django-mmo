@@ -81,4 +81,10 @@ INSTALLED_APPS = (
     'mmo.map',
     'mmo.player',
     'mmo.items',
+    'mmo.chat',
 )
+
+try:
+	from localsettings import *
+except ImportError:
+	pass
