@@ -4,24 +4,51 @@
 
 {% block extra_head %}
     <style>
+    table.game_screen {
+        border-spacing: 0;
+    }
     table.game_screen td {
         font-family: Verdana;
         font-size: 8pt;
     }
+    tr.top_bar {
+        background: #5C8699;
+    }
+    tr.top_bar td {
+        margin: 0;
+        padding: 5px;
+    }
     .control_panel p {
         margin: 0;
+        color: #FFF;
+    }
+    .control_panel a {
+        color: #FFF;
+        text-decoration: none;
     }
     .control_panel h1 {
-        margin: 0;
+        margin: 5px 2px;
+        padding: 2px 5px;
+        font-size: 14pt;
+        color: #EEE0E7;
+        background-color: #A54958;
+    }
+    .user_info {
+        color: #FFF;
     }
     .player_name {
         font-size: 10pt;
         font-weight: bold;
         margin-right: 1em;
+        color: #96E3FE;
     }
     .player_balance {
         font-size: 10pt;
         font-weight: bold;
+        color: #FFF595;
+    }
+    .user_statistics {
+        color: #FFF;
     }
     </style>
 {% endblock %}
@@ -36,19 +63,19 @@
     
     <table class="game_screen">
         
-        <tr>
-            <td valign="top" width="280" class="control_panel">
+        <tr class="top_bar">
+            <td width="280" class="control_panel">
                 <p><a href=""><b>Refresh</b></a> |
                 <b>Report a bug</b> |
                 <b>Save &amp; Exit</b></p>
                 <h1>DJANGO-MMO</h1>
             </td>
-            <td valign="top" width="200" class="user_info">
+            <td width="200" class="user_info">
                 <span class="player_name">{{ player.name }}</span> $ <span class="player_balance">{{ player.balance }}</span><br />
                 Level <b>{{ player.level }}</b> - xp: <b>{{ player.xp }}</b><br />
                 (next level at {{ player.next_level_at }})
             </td>
-            <td valign="top" width="320">
+            <td width="320" class="user_statistics">
                 <b>energy</b> [@@@] {{ player.energy }}/5000<br />
                 <b>mood</b> [@@@] {{ player.mood }}/200<br />
                 <b>karma</b> [@@@] {{ player.karma }}/200<br />
