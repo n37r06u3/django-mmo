@@ -1,2 +1,2 @@
-div.message_area { height: 300px; width: 400px; overflow: auto;}
+div.message_area { height: 250px; width: 300px; overflow: auto;}
 div.message_area ul { list-style: none; padding-left: 0;}
