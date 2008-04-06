@@ -98,6 +98,10 @@
     .lot_images {
         width: 480px;
     }
+    #lot_description {
+        height: 50px;
+        padding: 10px;
+    }
     </style>
 {% endblock %}
 
@@ -154,7 +158,9 @@
                     <h2>{{ player.location.hub.name }}</h2>
                     <p>{{ player.location.hub.description }}</p>
                     
-                    <div class="lot_images">{% for lot in player.location.hub.lots %}{% if lot %}<img src="/static/lot_{{ lot.image_code }}.png" width="60" height="108" class="lot_image"/>{% else %}<img src="/static/lot_0.png" width="60" height="108" class="lot_image"/>{% endif %}{% endfor %}</div>
+                    <div class="lot_images">{% for lot in player.location.hub.lots %}{% if lot %}<img src="/static/lot_{{ lot.image_code }}.png" width="60" height="108" class="lot_image" id="lot_image_{{ lot.position }}"/>{% else %}<img src="/static/lot_0.png" width="60" height="108" class="lot_image"/>{% endif %}{% endfor %}</div>
+                    
+                    <div id="lot_description"></div>
                     
                     <h3>Lots</h3>
                     
@@ -331,5 +337,22 @@
             </td>
         </tr>
     </table>
-    
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+          {% if player.location.lot %}
+          {% else %}
+            {% for lot in player.location.hub.lots %}
+                {% if lot %}
+                    $('#lot_image_{{ lot.position }}').hover(function (){
+                        $('#lot_description').html("<b>{{ lot.name }}</b><br />{{ lot.description }}");
+                    }, function() {
+                        $('#lot_description').html("");
+                    })
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+      });
+    </script>
+	
 {% endblock %}
