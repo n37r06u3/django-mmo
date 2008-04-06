@@ -99,7 +99,7 @@
         width: 480px;
     }
     #lot_description {
-        height: 50px;
+        height: 30px;
         padding: 10px;
     }
     </style>
@@ -162,27 +162,7 @@
                     
                     <div id="lot_description"></div>
                     
-                    <h3>Lots</h3>
-                    
-                    <ul>
-                        {% for lot in player.location.hub.lots %}
-                            {% if lot %}
-                                <li>
-                                    {% ifequal lot.kind "A" %}
-                                        <b>{{ lot.name }}</b>
-                                        <form method="POST" action="">
-                                            <input type="hidden" name="enter" value="{{ lot.id}}" />
-                                            <input type="submit" value="go" />
-                                        </form>
-                                    {% else %}
-                                        <b>{{ lot.name }}</b>
-                                    {% endifequal %}
-                                    {{ lot.description }}</li>
-                            {% else %}
-                                <li>EMPTY</li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
+                    <form style="display: none;" method="POST" action="" id="enter_lot"><input id="enter_lot_id" type="hidden" name="enter" value="" /></form>
                     
                     <h3>Roads</h3>
                     
@@ -348,7 +328,13 @@
                         $('#lot_description').html("<b>{{ lot.name }}</b><br />{{ lot.description }}");
                     }, function() {
                         $('#lot_description').html("");
-                    })
+                    });
+                    {% ifequal lot.kind "A" %}
+                        $('#lot_image_{{ lot.position }}').click(function (){
+                            $('#enter_lot_id').val("{{ lot.id }}");
+                            $('#enter_lot').cur[0].submit();
+                        });
+                    {% endifequal %}
                 {% endif %}
             {% endfor %}
         {% endif %}
