@@ -108,7 +108,7 @@ class LocationPile(models.Model): # @@@ longing for model inheritance
     
     def __unicode__(self):
         if self.regen:
-            return u"%s in %s every %s seconds (%s additional; now %s)" % (self.item_type, self.lot, self.regen, self.quantity, self.total_quantity())
+            return u"%s in %s every %s seconds (%s additional; now %s)" % (self.item_type, self.location_display(), self.regen, self.quantity, self.total_quantity())
         else:
             return u"%s [%s] in %s" % (self.item_type, self.total_quantity(), self.location_display())
         
