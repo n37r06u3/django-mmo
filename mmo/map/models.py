@@ -24,7 +24,7 @@ class Hub(models.Model):
         players = set()
         for location in Location.objects.filter(hub=self, lot__isnull=True, visible=True):
             players = players.union(location.player_set.all())
-        return players
+        return len(players), players
     
     def what_is_here(self):
         return [pile for pile in LocationPile.objects.filter(hub=self, lot__isnull=True) if pile.total_quantity() > 0]
@@ -91,7 +91,7 @@ class Lot(models.Model):
         players = set()
         for location in Location.objects.filter(lot=self, visible=True):
             players = players.union(location.player_set.all())
-        return players
+        return len(players), players
     
     def what_is_here(self):
         return [pile for pile in LocationPile.objects.filter(lot=self) if pile.total_quantity() > 0]

@@ -25,11 +25,19 @@
         
     <h3>Who's Here</h3>
     
+    {% ifequal player.location.lot.who_is_here.0 1 %}
+    <p>Just you.</p>
+    {% else %}
     <ul>
-        {% for other_player in player.location.lot.who_is_here %}
+        {% for other_player in player.location.lot.who_is_here.1 %}
+        {% ifequal player other_player %}
+        {% else %}
         <li>{{ other_player}}</li>
+        {% endifequal %}
         {% endfor %}
     </ul>
+    {% endifequal %}
+    
     
     <h3>What's Here</h3>
     
@@ -96,11 +104,18 @@
     
     <h3>Who's Here</h3>
     
+    {% ifequal player.location.hub.who_is_here.0 1 %}
+    <p>Just you.</p>
+    {% else %}
     <ul>
-        {% for other_player in player.location.hub.who_is_here %}
+        {% for other_player in player.location.hub.who_is_here.1 %}
+        {% ifequal player other_player %}
+        {% else %}
         <li>{{ other_player}}</li>
+        {% endifequal %}
         {% endfor %}
     </ul>
+    {% endifequal %}
     
     <h3>What's Here</h3>
     
