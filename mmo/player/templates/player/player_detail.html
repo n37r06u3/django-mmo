@@ -135,15 +135,21 @@
         <tr>
             <td colspan="2" valign="top" class="location">
                 {% if player.location.lot %}
-                    <h2>{{ player.location.lot.name }}</h2>
-                    <p>{{ player.location.lot.description }}</p>
-                    
-                    <form method="POST" action="">
-                        <p>back to <b>{{ player.location.lot.hub }}</b>
+                    <table width="100%" style="border-spacing: 0;">
+                        <tr style="background: #EBEBE2;">
+                            <td><img style="float: left;" src="/static/lot_{{ player.location.lot.image_code }}.png" width="60" height="108"/></td>
+                            <td align="center">
+                                You are in:
+                                <h2>{{ player.location.lot.name }}</h2>
+                            </td>
+                            <td align="center">
+                            <form method="POST" action="">
                                 <input type="hidden" name="exit_to" value="{{ player.location.lot.hub.id}}" />
-                                <input type="submit" value="go" />
-                        </p>
-                    </form>
+                                <input type="submit" value="exit" /><br />back to<br /><b>{{ player.location.lot.hub }}</b>
+                            </form>
+                            </td>
+                        </tr>
+                    </table>
                 {% else %}
                     <h2>{{ player.location.hub.name }}</h2>
                     <p>{{ player.location.hub.description }}</p>
