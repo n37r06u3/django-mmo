@@ -41,14 +41,14 @@
 
 <h2>Who's Here</h2>
 
-{% if hub.who_is_here %}
+{% if hub.who_is_here.0 %}
 <ul>
-    {% for player in hub.who_is_here %}
+    {% for player in hub.who_is_here.1 %}
     <li>{{ player}}</li>
     {% endfor %}
 </ul>
 {% else %}
-<p>No one else.</p>
+<p>No one.</p>
 {% endif %}
 
 <h2>What's Here</h2>
