@@ -13,18 +13,18 @@
     <table>
         
         <tr>
-            <td valign="top">
+            <td valign="top" width="280">
                 <a href="">REFRESH</a> |
                 @@@ Report a bug |
                 @@@ Save &amp; Exit <br />
                 @@@ HOMEPAGE
             </td>
-            <td valign="top">
+            <td valign="top" width="200">
                 {{ player.name }} $ {{ player.balance }}<br />
                 Level <b>{{ player.level }}</b> - xp: <b>{{ player.xp }}</b><br />
                 (next level at {{ player.next_level_at }})
             </td>
-            <td valign="top">
+            <td valign="top" width="320">
                 <b>energy</b> [@@@] {{ player.energy }}/5000<br />
                 <b>mood</b> [@@@] {{ player.mood }}/200<br />
                 <b>karma</b> [@@@] {{ player.karma }}/200<br />
@@ -32,7 +32,7 @@
         </tr>
         
         <tr>
-            <td colspan="2" valign="top">
+            <td colspan="2" valign="top" width="480">
                 <h2>Location</h2>
                 
                 {% if player.location.lot %}
