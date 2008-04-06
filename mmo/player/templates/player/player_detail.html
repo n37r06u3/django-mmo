@@ -148,14 +148,14 @@
                     <h2>{{ player.location.hub.name }}</h2>
                     <p>{{ player.location.hub.description }}</p>
                     
-                    <div class="lot_images"><img src="/static/lot_1.png" width="60" height="108" class="lot_image"/><img src="/static/lot_0.png" width="60" height="108" class="lot_image"/><img src="/static/lot_1.png" width="60" height="108" class="lot_image"/><img src="/static/lot_1.png" width="60" height="108" class="lot_image"/><img src="/static/lot_0.png" width="60" height="108" class="lot_image"/><img src="/static/lot_0.png" width="60" height="108" class="lot_image"/><img src="/static/lot_0.png" width="60" height="108" class="lot_image"/><img src="/static/lot_1.png" width="60" height="108" class="lot_image"/></div>
+                    <div class="lot_images">{% for lot in player.location.hub.lots %}{% if lot %}<img src="/static/lot_{{ lot.image_code }}.png" width="60" height="108" class="lot_image"/>{% else %}<img src="/static/lot_0.png" width="60" height="108" class="lot_image"/>{% endif %}{% endfor %}</div>
                     
                     <h3>Lots</h3>
                     
-                    {% if player.location.hub.lots %}
-                        <ul>
-                            {% for lot in player.location.hub.lots %}
-                                <li>{{ lot.position }}. 
+                    <ul>
+                        {% for lot in player.location.hub.lots %}
+                            {% if lot %}
+                                <li>
                                     {% ifequal lot.kind "A" %}
                                         <b>{{ lot.name }}</b>
                                         <form method="POST" action="">
@@ -166,11 +166,11 @@
                                         <b>{{ lot.name }}</b>
                                     {% endifequal %}
                                     {{ lot.description }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>No lots here.</p>
-                    {% endif %}
+                            {% else %}
+                                <li>EMPTY</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
                     
                     <h3>Roads</h3>
                     

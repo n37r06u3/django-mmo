@@ -18,7 +18,10 @@ class Hub(models.Model):
         return r
     
     def lots(self):
-        return self.lot_set.order_by('position')
+        l = [None, None, None, None, None, None, None, None]
+        for lot in self.lot_set.all():
+            l[lot.position] = lot
+        return l
     
     def who_is_here(self):
         players = set()
@@ -85,7 +88,7 @@ class Lot(models.Model):
     # @@@ initially no houses
     kind = models.CharField(max_length=1, choices = (('A', 'accessible'), ('I', 'inaccessible')))
     
-    # @@@ eventually will have an image too
+    image_code = models.IntegerField()
     
     def who_is_here(self): # @@@ can't wait for model inheritance
         players = set()
