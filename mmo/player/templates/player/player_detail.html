@@ -175,15 +175,13 @@
                     
                     <h3>Roads</h3>
                     
+                    <p>In the absence of the map, clicking on an adjacent hub below is how you travel around at the moment.</p>
+                    
                     {% if player.location.hub.roads %}
                         <ul>
                             {% for road in player.location.hub.roads %}
-                                <li>{{ road.direction }} to <b>{{ road.destination }}</b>
-                                    <form method="POST" action="">
-                                        <input type="hidden" name="travel_to" value="{{ road.destination.id}}" />
-                                        <input type="submit" value="go" />
-                                    </form>
-                                </li>
+                                <form id="travel_{{ road.destination.id }}" style="display: none;" method="POST" action=""><input type="hidden" name="travel_to" value="{{ road.destination.id}}" /></form>
+                                <li>{{ road.direction }} to <a href="#" onclick="$('#travel_{{ road.destination.id }}').submit()"><b>{{ road.destination }}</b></a></li>
                             {% endfor %}
                         </ul>
                     {% else %}
