@@ -102,6 +102,15 @@
         height: 30px;
         padding: 10px;
     }
+    a.exit_button {
+        font-family: "Arial Narrow";
+        text-transform: uppercase;
+        padding: 2px;
+        font-size: 16pt;
+        color: #FFF;
+        text-decoration: none;
+        background: #D00;
+    }
     </style>
 {% endblock %}
 
@@ -147,10 +156,10 @@
                                 <h2>{{ player.location.lot.name }}</h2>
                             </td>
                             <td align="center">
-                            <form method="POST" action="">
-                                <input type="hidden" name="exit_to" value="{{ player.location.lot.hub.id}}" />
-                                <input type="submit" value="exit" /><br />back to<br /><b>{{ player.location.lot.hub }}</b>
-                            </form>
+                                <form id="exit_lot" method="POST" action=""><input type="hidden" name="exit_to" value="{{ player.location.lot.hub.id}}" /></form>
+                                <a class="exit_button" href="#" onclick="$('#exit_lot').submit()">exit</a><br />
+                                back to<br /><b>{{ player.location.lot.hub }}</b>
+                                </form>
                             </td>
                         </tr>
                     </table>
@@ -332,7 +341,7 @@
                     {% ifequal lot.kind "A" %}
                         $('#lot_image_{{ lot.position }}').click(function (){
                             $('#enter_lot_id').val("{{ lot.id }}");
-                            $('#enter_lot').cur[0].submit();
+                            $('#enter_lot').submit();
                         });
                     {% endifequal %}
                 {% endif %}
