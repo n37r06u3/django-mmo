@@ -13,6 +13,10 @@ class Player(models.Model):
     xp = models.IntegerField(default=0)
     balance = models.IntegerField(default=0)
     
+    energy = models.IntegerField(default=5000)
+    mood = models.IntegerField(default=200)
+    karma = models.IntegerField(default=200)
+    
     def level(self):
         for level, xp in enumerate(XP_LIST):
             if self.xp < xp:
