@@ -8,6 +8,12 @@
         font-family: Verdana;
         font-size: 8pt;
     }
+    .control_panel p {
+        margin: 0;
+    }
+    .control_panel h1 {
+        margin: 0;
+    }
     </style>
 {% endblock %}
 
@@ -22,11 +28,11 @@
     <table class="game_screen">
         
         <tr>
-            <td valign="top" width="280">
-                <a href="">REFRESH</a> |
-                @@@ Report a bug |
-                @@@ Save &amp; Exit <br />
-                @@@ HOMEPAGE
+            <td valign="top" width="280" class="control_panel">
+                <p><a href=""><b>Refresh</b></a> |
+                <b>Report a bug</b> |
+                <b>Save &amp; Exit</b></p>
+                <h1>DJANGO-MMO</h1>
             </td>
             <td valign="top" width="200">
                 {{ player.name }} $ {{ player.balance }}<br />
