@@ -1,5 +1,7 @@
 from django.db import models
 
+from datetime import datetime
+
 # @@@ GNE also looks like it had unique items, which aren't covered here yet
 
 class ItemType(models.Model):
@@ -62,7 +64,11 @@ class LocationPile(models.Model): # @@@ longing for model inheritance
     """
     
     item_type = models.ForeignKey(ItemType)
-    quantity = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField() # if a generator pile this is in addition to what's been generated
+    
+    # for generator piles
+    start_time = models.DateTimeField(null=True, blank=True) # when to start generating from
+    regen = models.PositiveIntegerField(null=True, blank=True) # how many seconds before a new item gets generated
     
     # @@@ in absence of model mixin, can't decide whether to use location object
     # @@@ or just duplicate code
@@ -71,16 +77,22 @@ class LocationPile(models.Model): # @@@ longing for model inheritance
     hub = models.ForeignKey('map.Hub')
     lot = models.ForeignKey('map.Lot', null=True, blank=True) # must be a Lot in the self.hub Hub
     
+    def total_quantity(self):
+        if self.regen:
+            delta = datetime.now() - self.start_time
+            seconds = 86400 * delta.days + delta.seconds
+            return (seconds / self.regen) + self.quantity
+        else:
+            return self.quantity
+    
     def pickup_list(self):
         # utility method for enumerating possible quantities that can be picked up from this pile
-        return [quantity for quantity in [1, 2, 5, 10, 25, 50, 100] if quantity < self.quantity] + [self.quantity]
+        return [quantity for quantity in [1, 2, 5, 10, 25, 50, 100] if quantity < self.total_quantity()] + [self.total_quantity()]
     
     def reduce(self, quantity):
-        q = min(self.quantity, quantity)
+        q = min(self.total_quantity(), quantity)
         self.quantity -= q
         self.save()
-        if self.quantity == 0:
-            self.delete()
         return q
     
     def increase(self, quantity):
@@ -95,7 +107,10 @@ class LocationPile(models.Model): # @@@ longing for model inheritance
             return self.hub.name
     
     def __unicode__(self):
-        return u"%s [%s] in %s" % (self.item_type, self.quantity, self.location_display())
+        if self.regen:
+            return u"%s in %s every %s seconds (%s additional; now %s)" % (self.item_type, self.lot, self.regen, self.quantity, self.total_quantity())
+        else:
+            return u"%s [%s] in %s" % (self.item_type, self.total_quantity(), self.location_display())
         
     class Admin:
         pass

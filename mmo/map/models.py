@@ -27,7 +27,7 @@ class Hub(models.Model):
         return players
     
     def what_is_here(self):
-        return LocationPile.objects.filter(hub=self, lot__isnull=True)
+        return [pile for pile in LocationPile.objects.filter(hub=self, lot__isnull=True) if pile.total_quantity() > 0]
     
     def drop_here(self, item_type, quantity):
         pile, created = LocationPile.objects.get_or_create(item_type=item_type, hub=self, lot__isnull=True, defaults={'quantity': 0})
@@ -94,7 +94,7 @@ class Lot(models.Model):
         return players
     
     def what_is_here(self):
-        return LocationPile.objects.filter(lot=self)
+        return [pile for pile in LocationPile.objects.filter(lot=self) if pile.total_quantity() > 0]
     
     def drop_here(self, item_type, quantity):
         pile, created = LocationPile.objects.get_or_create(item_type=item_type, hub=self.hub, lot=self, defaults={'quantity': 0})
