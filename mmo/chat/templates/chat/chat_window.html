@@ -7,7 +7,7 @@
           $('form').submit(function(){
             element = $('input[@name=message]').get(0);
             mymessage   = element.value;
-            pid = 1 // {{ player.id }}
+            pid = {{ player.id }} // {{ player.id }}
             $.post('/chat/update_chat/', {message: mymessage, player_id: pid});
             element.value = '';
             return false;
