@@ -40,6 +40,7 @@
             {% for q in pile.pickup_list %}
                 <input type="submit" name="quantity" value="{{ q }}" />
             {% endfor %}
+            </form>
         </li>
         {% endfor %}
     </ul>
@@ -110,6 +111,7 @@
             {% for q in pile.pickup_list %}
                 <input type="submit" name="quantity" value="{{ q }}" />
             {% endfor %}
+            </form>
         </li>
         {% endfor %}
     </ul>
@@ -131,6 +133,7 @@
         {% for q in pile.drop_list %}
             <input type="submit" name="quantity" value="{{ q }}" />
         {% endfor %}
+        </form>
     </li>
     {% endfor %}
 </ul>
