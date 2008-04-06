@@ -5,7 +5,7 @@
 {% block extra_head %}
     <style>
     table.game_screen {
-        width: 800px;
+        width: 850px;
         border-spacing: 0;
     }
     table.game_screen td {
@@ -68,6 +68,36 @@
     .user_statistics .stat {
         text-align: right;
     }
+    div#energy {
+        background: #F9C;
+        width: 140px;
+        height: 8px;
+    }
+    div#mood {
+        background: #9FC;
+        width: 140px;
+        height: 8px;
+    }
+    div#karma {
+        background: #9CF;
+        width: 140px;
+        height: 8px;
+    }
+    .location {
+        width: 480px;
+        margin: 0;
+        padding: 0;
+    }
+    .location h2 {
+        margin: 10px 10px 0 10px;
+    }
+    .location p {
+        margin: 5px 10px 20px;
+        width: 460px;
+    }
+    .lot_images {
+        width: 480px;
+    }
     </style>
 {% endblock %}
 
@@ -95,17 +125,15 @@
             </td>
             <td class="user_statistics">
                 <table>
-                    <tr><td class="stat"><b>energy</b></td><td width="150">[@@@]</td><td>{{ player.energy }}/5000</td></tr>
-                    <tr><td class="stat"><b>mood</b></td><td>[@@@]</td><td>{{ player.mood }}/200</td></tr>
-                    <tr><td class="stat"><b>karma</b></td><td>[@@@]</td><td>{{ player.karma }}/200</td></tr>
+                    <tr><td class="stat"><b>energy</b></td><td width="150"><div id="energy">&nbsp;</div></td><td>{{ player.energy }}/5000</td></tr>
+                    <tr><td class="stat"><b>mood</b></td><td><div id="mood">&nbsp;</div></td><td>{{ player.mood }}/200</td></tr>
+                    <tr><td class="stat"><b>karma</b></td><td><div id="karma">&nbsp;</div></td><td>{{ player.karma }}/200</td></tr>
                 </table>
             </td>
         </tr>
         
         <tr>
-            <td colspan="2" valign="top" width="480">
-                <h2>Location</h2>
-                
+            <td colspan="2" valign="top" class="location">
                 {% if player.location.lot %}
                     <h2>{{ player.location.lot.name }}</h2>
                     <p>{{ player.location.lot.description }}</p>
@@ -120,22 +148,7 @@
                     <h2>{{ player.location.hub.name }}</h2>
                     <p>{{ player.location.hub.description }}</p>
                     
-                    <h3>Roads</h3>
-                    
-                    {% if player.location.hub.roads %}
-                        <ul>
-                            {% for road in player.location.hub.roads %}
-                                <li>{{ road.direction }} to <b>{{ road.destination }}</b>
-                                    <form method="POST" action="">
-                                        <input type="hidden" name="travel_to" value="{{ road.destination.id}}" />
-                                        <input type="submit" value="go" />
-                                    </form>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>No roads out of here.</p>
-                    {% endif %}
+                    <div class="lot_images"><img src="/site_media/lot_0.png" width="60" height="108" class="lot_image"/><img src="/site_media/lot_0.png" width="60" height="108" class="lot_image"/><img src="/site_media/lot_0.png" width="60" height="108" class="lot_image"/><img src="/site_media/lot_0.png" width="60" height="108" class="lot_image"/><img src="/site_media/lot_0.png" width="60" height="108" class="lot_image"/><img src="/site_media/lot_0.png" width="60" height="108" class="lot_image"/><img src="/site_media/lot_0.png" width="60" height="108" class="lot_image"/><img src="/site_media/lot_0.png" width="60" height="108" class="lot_image"/></div>
                     
                     <h3>Lots</h3>
                     
@@ -158,6 +171,24 @@
                     {% else %}
                         <p>No lots here.</p>
                     {% endif %}
+                    
+                    <h3>Roads</h3>
+                    
+                    {% if player.location.hub.roads %}
+                        <ul>
+                            {% for road in player.location.hub.roads %}
+                                <li>{{ road.direction }} to <b>{{ road.destination }}</b>
+                                    <form method="POST" action="">
+                                        <input type="hidden" name="travel_to" value="{{ road.destination.id}}" />
+                                        <input type="submit" value="go" />
+                                    </form>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No roads out of here.</p>
+                    {% endif %}
+                    
                 {% endif %}
             </td>
             <td valign="top">
