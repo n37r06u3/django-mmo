@@ -24,15 +24,9 @@
                 </ul>
             </td>
             <td valign="top">
-                <h2>User Info</h2>
-                
-                <ul>
-                    <li>{{ player.name }}</li>
-                    <li>@@@ Money</li>
-                    <li>@@@ Level</li>
-                    <li>@@@ xp</li>
-                    <li>@@@ next level at</li>
-                </ul>
+                {{ player.name }} $ {{ player.balance }}<br />
+                Level <b>{{ player.level }}</b> - xp: <b>{{ player.xp }}</b><br />
+                (next level at {{ player.next_level_at }})
             </td>
             <td valign="top">
                 <h2>User Stats</h2>

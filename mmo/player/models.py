@@ -2,11 +2,28 @@ from django.db import models
 
 from items.models import InventoryPile
 
+XP_LIST = [250, 500, 1000] # @@@
+
 class Player(models.Model):
     
     name = models.CharField(max_length=20)
     
     location = models.ForeignKey('map.Location')
+    
+    xp = models.IntegerField(default=0)
+    balance = models.IntegerField(default=0)
+    
+    def level(self):
+        for level, xp in enumerate(XP_LIST):
+            if self.xp < xp:
+                return str(level + 1)
+        return str(len(XP_LIST) + 1) + "+"
+    
+    def next_level_at(self):
+        for xp in XP_LIST:
+            if self.xp < xp:
+                return str(xp)
+        return "tbd"
     
     def inventory(self):
         return InventoryPile.objects.filter(player=self)
