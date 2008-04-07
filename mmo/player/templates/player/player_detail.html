@@ -313,7 +313,20 @@
                             
                             <h2>Making</h2>
                             
-                            <p>@@@</p>
+                            {% if player.make_list %}
+                                <ul>
+                                    {% for target in player.make_list %}
+                                        <li><b>{% ifequal target.quantity 1 %}{{ target.item_type }}{% else %}({{ target.quantity }}) {{ target.item_type }}{% endifequal %}</b> [<b>make</b>]<br />
+                                            requires:
+                                            {% for ingredient in target.makeingredient_set.all %}
+                                                <br />{% ifequal ingredient.quantity 1 %}{{ ingredient.item_type }}{% else %}{{ ingredient.item_type }} ({{ ingredient.quantity }}){% endifequal %}
+                                            {% endfor %}
+                                            </li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p>Nothing at the moment.</p>
+                            {% endif %}
                             
                             <h2>Contacts</h2>
                             
