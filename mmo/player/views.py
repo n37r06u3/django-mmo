@@ -61,7 +61,13 @@ def player_view(request, player_id):
                 player.location.lot.drop_here(pile.item_type, quantity)
             else:
                 player.location.hub.drop_here(pile.item_type, quantity)
-            
+        elif "make_target" in request.POST:
+            # @@@ need to double check can actually be made
+            target_id = request.POST["make_target"]
+            target = MakeTarget.objects.get(id=target_id) # @@@ may throw exception
+            player.make(target)
+        else:
+            print "UNRECOGNIZED POST: %s" % request.POST.keys()
     return render_to_response("player/player_detail.html", {
         "player": player,
     })

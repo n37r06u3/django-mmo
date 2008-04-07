@@ -58,6 +58,12 @@ class Player(models.Model):
         
         return targets
     
+    def make(self, target):
+        for ingredient in target.makeingredient_set.all():
+            pile = InventoryPile.objects.get(item_type=ingredient.item_type, player=self)
+            pile.reduce(ingredient.quantity)
+        self.add_to_inventory(target.item_type, target.quantity)
+    
     def __unicode__(self):
         return self.name
     

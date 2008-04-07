@@ -316,12 +316,13 @@
                             {% if player.make_list %}
                                 <ul>
                                     {% for target in player.make_list %}
-                                        <li><b>{% ifequal target.quantity 1 %}{{ target.item_type }}{% else %}({{ target.quantity }}) {{ target.item_type }}{% endifequal %}</b> [<b>make</b>]<br />
+                                        <form style="display: none;" id="make_{{ target.id }}" method="POST" action=""><input type="hidden" name="make_target" value="{{ target.id }}" /></form>
+                                        <li><b>{% ifequal target.quantity 1 %}{{ target.item_type }}{% else %}({{ target.quantity }}) {{ target.item_type }}{% endifequal %}</b> [<a href="#" onclick="$('#make_{{ target.id }}').submit()"><b>make</b></a>]<br />
                                             requires:
                                             {% for ingredient in target.makeingredient_set.all %}
                                                 <br />{% ifequal ingredient.quantity 1 %}{{ ingredient.item_type }}{% else %}{{ ingredient.item_type }} ({{ ingredient.quantity }}){% endifequal %}
                                             {% endfor %}
-                                            </li>
+                                        </li>
                                     {% endfor %}
                                 </ul>
                             {% else %}
