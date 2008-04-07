@@ -1,0 +1,11 @@
+To try django-mmo out,
+
+ - ./manage.py syncdb
+ - ./manage.py loaddata sample_map
+ - ./manage.py loaddata sample_items
+ - ./manage.py runserver
+ - go to http://localhost:8000/player/
+ - create a player
+ - click on their name to play as them
+ - explore and try to find sheets of paper, red paper and yellow paper
+ - create multiple players
