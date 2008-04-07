@@ -75,3 +75,30 @@ class LocationPile(models.Model): # @@@ longing for model inheritance
         
     class Admin:
         pass
+
+
+class MakeTarget(models.Model):
+    
+    quantity = models.PositiveIntegerField(default=1)
+    item_type = models.ForeignKey(ItemType)
+    
+    # @@@ make skill
+    
+    def __unicode__(self):
+        return u"%s x %s" % (self.quantity, self.item_type)
+    
+    class Admin:
+        pass
+
+
+class MakeIngredient(models.Model):
+    
+    target = models.ForeignKey(MakeTarget)
+    quantity = models.PositiveIntegerField(default=1)
+    item_type = models.ForeignKey(ItemType)
+    
+    def __unicode__(self):
+        return u"%s x %s for %s" % (self.quantity, self.item_type, self.target)
+    
+    class Admin:
+        pass
