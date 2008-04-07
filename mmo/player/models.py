@@ -1,5 +1,7 @@
 from django.db import models
 
+from items.models import *
+
 XP_LIST = [250, 500, 1000] # @@@
 
 class Player(models.Model):
@@ -35,6 +37,27 @@ class Player(models.Model):
         pile.increase(quantity)
         return pile.quantity
     
+    def make_list(self):
+        # what can I make?
+        
+        # prefetch inventory counts
+        item_counts = {}
+        for pile in self.inventory():
+            item_counts[pile.item_type.id] = pile.quantity
+        
+        targets = []
+        
+        for target in MakeTarget.objects.all():
+            missing = False
+            for ingredient in target.makeingredient_set.all():
+                if item_counts.get(ingredient.item_type.id, 0) < ingredient.quantity:
+                    missing = True
+                    break
+            if not missing:
+                targets.append(target)
+        
+        return targets
+    
     def __unicode__(self):
         return self.name
     
@@ -47,7 +70,7 @@ class InventoryPile(models.Model): # @@@ longing for model inheritance
     a pile of a particular type of item in a player's inventory.
     """
 
-    item_type = models.ForeignKey('items.ItemType')
+    item_type = models.ForeignKey(ItemType)
     quantity = models.PositiveIntegerField()
 
     player = models.ForeignKey(Player)
