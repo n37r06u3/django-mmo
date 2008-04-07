@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response, get_object_or_404
 
-from models import Player
+from models import *
 from map.models import *
 from items.models import *
 
