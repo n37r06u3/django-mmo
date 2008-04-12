@@ -8,6 +8,8 @@
 <h1>{{ itemtype.name }}</h1>
 <p>{{ itemtype.description }}</p>
 
+<p>Small image: <img src="/static/images/items/item_small_{{ itemtype.icon_code }}.png" />
+
 <h2>Inventory Piles</h2>
 
 {% if itemtype.inventorypile_set.all %}

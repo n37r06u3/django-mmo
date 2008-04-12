@@ -195,6 +195,14 @@
         font-size: 8pt;
         font-weight: bold;
     }
+    ul.item_list {
+        list-style: none;
+        padding-left: 16px;
+        text-indent: -16px;
+    }
+    ul.item_list img {
+        vertical-align: middle;
+    }
     </style>
 {% endblock %}
 
@@ -283,14 +291,13 @@
                                 
                                 {% if player.location.lot %}
                                     {% if player.location.lot.what_is_here %}
-                                        <ul>
+                                        <ul class="item_list">
                                             {% for pile in player.location.lot.what_is_here %}
-                                                <li>{{ pile.item_type }} [<b>{{ pile.total_quantity }}</b>]<br />
-                                                    <form class="hidden" id="pickup_{{ pile.id }}" method="POST" action=""><input type="hidden" name="pickup_pile" value="{{ pile.id }}" /><input id="pickup_quantity_{{ pile.id }}" type="hidden" name="quantity" value="0" /></form>
-                                                        pick up 
-                                                        {% for q in pile.pickup_list %}[<a class="quantity_link" href="#" onclick="$('#pickup_quantity_{{ pile.id }}').val('{{ q }}'); $('#pickup_{{ pile.id }}').submit()">{{ q }}</a>]
-                                                        {% endfor %}
-                                                    </form>
+                                                <form class="hidden" id="pickup_{{ pile.id }}" method="POST" action=""><input type="hidden" name="pickup_pile" value="{{ pile.id }}" /><input id="pickup_quantity_{{ pile.id }}" type="hidden" name="quantity" value="0" /></form>
+                                                <li><img src="/static/images/items/item_small_{{ pile.item_type.icon_code }}.png" />{{ pile.item_type }} [<b>{{ pile.total_quantity }}</b>]<br />
+                                                    pick up 
+                                                    {% for q in pile.pickup_list %}[<a class="quantity_link" href="#" onclick="$('#pickup_quantity_{{ pile.id }}').val('{{ q }}'); $('#pickup_{{ pile.id }}').submit()">{{ q }}</a>]
+                                                    {% endfor %}
                                                 </li>
                                             {% endfor %}
                                         </ul>
@@ -301,14 +308,13 @@
                                 {% else %}
                                 
                                     {% if player.location.hub.what_is_here %}
-                                        <ul>
+                                        <ul class="item_list">
                                             {% for pile in player.location.hub.what_is_here %}
-                                                <li>{{ pile.item_type }} [<b>{{ pile.total_quantity }}</b>]<br />
-                                                    <form class="hidden" id="pickup_{{ pile.id }}" method="POST" action=""><input type="hidden" name="pickup_pile" value="{{ pile.id }}" /><input id="pickup_quantity_{{ pile.id }}" type="hidden" name="quantity" value="0" /></form>
-                                                        pick up 
-                                                        {% for q in pile.pickup_list %}[<a class="quantity_link" href="#" onclick="$('#pickup_quantity_{{ pile.id }}').val('{{ q }}'); $('#pickup_{{ pile.id }}').submit()">{{ q }}</a>]
-                                                        {% endfor %}
-                                                    </form>
+                                            <form class="hidden" id="pickup_{{ pile.id }}" method="POST" action=""><input type="hidden" name="pickup_pile" value="{{ pile.id }}" /><input id="pickup_quantity_{{ pile.id }}" type="hidden" name="quantity" value="0" /></form>
+                                                <li><img src="/static/images/items/item_small_{{ pile.item_type.icon_code }}.png" />{{ pile.item_type }} [<b>{{ pile.total_quantity }}</b>]<br />
+                                                    pick up 
+                                                    {% for q in pile.pickup_list %}[<a class="quantity_link" href="#" onclick="$('#pickup_quantity_{{ pile.id }}').val('{{ q }}'); $('#pickup_{{ pile.id }}').submit()">{{ q }}</a>]
+                                                    {% endfor %}
                                                 </li>
                                             {% endfor %}
                                         </ul>
@@ -390,14 +396,13 @@
                             
                             <div id="inventory" class="inmc">
                                 {% if player.inventory %}
-                                    <ul>
+                                    <ul class="item_list">
                                         {% for pile in player.inventory %}
-                                            <li>{{ pile.item_type }} [<b>{{ pile.quantity }}</b>]<br />
-                                                <form class="hidden" id="drop_{{ pile.id }}" method="POST" action=""><input type="hidden" name="drop_pile" value="{{ pile.id }}" /><input id="drop_quantity_{{ pile.id }}" type="hidden" name="quantity" value="0" /></form>
-                                                    drop
-                                                    {% for q in pile.drop_list %}[<a class="quantity_link" href="#" onclick="$('#drop_quantity_{{ pile.id }}').val('{{ q }}'); $('#drop_{{ pile.id }}').submit()">{{ q }}</a>]
-                                                    {% endfor %}
-                                                </form>
+                                            <form class="hidden" id="drop_{{ pile.id }}" method="POST" action=""><input type="hidden" name="drop_pile" value="{{ pile.id }}" /><input id="drop_quantity_{{ pile.id }}" type="hidden" name="quantity" value="0" /></form>
+                                            <li><img src="/static/images/items/item_small_{{ pile.item_type.icon_code }}.png" />{{ pile.item_type }} [<b>{{ pile.quantity }}</b>]<br />
+                                                drop
+                                                {% for q in pile.drop_list %}[<a class="quantity_link" href="#" onclick="$('#drop_quantity_{{ pile.id }}').val('{{ q }}'); $('#drop_{{ pile.id }}').submit()">{{ q }}</a>]
+                                                {% endfor %}
                                             </li>
                                         {% endfor %}
                                     </ul>
@@ -412,10 +417,10 @@
                             
                             <div id="making" class="inmc">
                                 {% if player.make_list %}
-                                    <ul>
+                                    <ul class="item_list">
                                         {% for target in player.make_list %}
                                             <form style="display: none;" id="make_{{ target.id }}" method="POST" action=""><input type="hidden" name="make_target" value="{{ target.id }}" /></form>
-                                            <li><b>{% ifequal target.quantity 1 %}{{ target.item_type }}{% else %}({{ target.quantity }}) {{ target.item_type }}{% endifequal %}</b> [<a href="#" onclick="$('#make_{{ target.id }}').submit()"><b>make</b></a>]<br />
+                                            <li><img src="/static/images/items/item_small_{{ target.item_type.icon_code }}.png" /><b>{% ifequal target.quantity 1 %}{{ target.item_type }}{% else %}({{ target.quantity }}) {{ target.item_type }}{% endifequal %}</b> [<a href="#" onclick="$('#make_{{ target.id }}').submit()"><b>make</b></a>]<br />
                                                 requires:
                                                 {% for ingredient in target.makeingredient_set.all %}
                                                     <br />{% ifequal ingredient.quantity 1 %}{{ ingredient.item_type }}{% else %}{{ ingredient.item_type }} ({{ ingredient.quantity }}){% endifequal %}

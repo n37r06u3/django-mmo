@@ -7,7 +7,7 @@
 
 <ul>
     {% for itemtype in itemtype_list %}
-    <li><a href="{{ itemtype.id }}/">{{ itemtype.name }}</a></li>
+    <li><img src="/static/images/items/item_small_{{ itemtype.icon_code }}.png" /><a href="{{ itemtype.id }}/">{{ itemtype.name }}</a></li>
     {% endfor %}
 </ul>
 
