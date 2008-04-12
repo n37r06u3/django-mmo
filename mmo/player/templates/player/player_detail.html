@@ -165,6 +165,26 @@
         position: relative;
         bottom: -1px;
     }
+    div.message_area {
+        height: 180px;
+        overflow: auto;
+    }
+    div.message_area ul {
+        list-style: none;
+        padding-left: 0;
+        margin: 5px;
+    }
+    #chatform {
+        margin: 0;
+    }
+    #message {
+        margin: 2px;
+        width: 296px;
+        background: #EEE;
+    }
+    .message_player {
+        color: #F66;
+    }
     </style>
 {% endblock %}
 
@@ -335,7 +355,11 @@
                             </div>
                             
                             <div id="chat" class="cap">
-                                <p>{% include "chat/chat_window.html" %}</p>
+                                <form id="chatform">
+                                    <input type="text" name="message" value="" id="message">
+                                    <input type="hidden" name="player_id" value="{{ player.id }}">
+                                </form>
+                                <div class="message_area"></div>
                             </div>
                             <div id="activity_log" class="cap">
                                 @@@ activity log not yet implemented
@@ -429,7 +453,30 @@
                 {% endif %}
             {% endfor %}
         {% endif %}
+        
+        /* Update chat when the form is used */
+        $('form#chatform').submit(function(){
+          element = $('input[@name=message]').get(0);
+          mymessage = element.value;
+          pid = {{ player.id }};
+          $.post('/chat/update_chat/', {
+              message: mymessage, player_id: pid
+          });
+          element.value = '';
+          return false;
+        });
+        
       });
+      
+      // Chat must also be updated when nothing is happening:
+      // We have to provide a random number or else IE will not refresh properly:
+      function updateChat() {
+          num = Math.random();
+          $('div.message_area').load('/chat/update_chat/?' + num);
+          setTimeout('updateChat()', 1000);
+      }
+      
+      updateChat();
     </script>
 	
 {% endblock %}

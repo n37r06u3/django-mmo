@@ -1,5 +1,5 @@
 <ul>
 {% for message in messages %}
-	<li><small>{{ message.timestamp|date:"m/d f" }}</small> - {{ message.player }}: {{ message.message }}</li>
+    <li><span class="message_player">{{ message.player }}</span>: {{ message.message }}</li>
 {% endfor %}
 </ul>
