@@ -4,49 +4,62 @@
 
 {% block extra_head %}
     <style>
-    table.game_screen {
-        width: 850px;
-        border-spacing: 0;
-    }
-    table.game_screen td {
+    
+    
+    /* game screen */
+    
+    #game_screen {
+        width: 820px;
+        height: 720px;
+        background: #a7b7c7;
         font-family: Verdana;
         font-size: 8pt;
+        border: 1px solid #666;
     }
-    tr.top_bar {
+    
+    
+    /* top bar */
+    
+    #top_bar {
         background: #5C8699;
+        height: 60px;
     }
-    .control_panel {
+    
+    #control_panel {
+        float: left;
         width: 280px;
         margin: 0;
-        padding: 5px 40px 5px 5px;
+        padding: 5px 15px 5px 5px;
     }
-    .user_info {
-        width: 200px;
+    #user_info {
+        float: left;
+        width: 160px;
         margin: 0;
-        padding: 5px;
+        padding: 5px 15px;
     }
-    .user_statistics {
-        width: 320px;
+    #user_statistics {
         margin: 0;
-        padding: 5px 5px 5px 40px;
+        padding: 5px 5px 5px 5px;
     }
-    .control_panel p {
+    
+    #control_panel p {
         margin: 0;
         color: #FFF;
     }
-    .control_panel a {
+    #control_panel a {
         color: #FFF;
         font-weight: bold;
         text-decoration: none;
     }
-    .control_panel h1 {
-        margin: 5px 2px;
+    #control_panel h1 {
+        margin: 3px 2px;
         padding: 2px 5px;
         font-size: 14pt;
         color: #EEE0E7;
         background-color: #A54958;
+        border: 1px solid #000;
     }
-    .user_info {
+    #user_info {
         color: #FFF;
     }
     .player_name {
@@ -60,47 +73,97 @@
         font-weight: bold;
         color: #FFF595;
     }
-    .user_statistics table {
-    }
-    .user_statistics td {
+    #user_statistics td {
+        padding: 0 2px;
         color: #FFF;
+        font-size: 8pt;
     }
-    .user_statistics .stat {
+    #user_statistics .stat {
         text-align: right;
     }
     div#energy {
+        margin-top: 3px;
         background: #F9C;
         width: 140px;
         height: 8px;
     }
     div#mood {
+        margin-top: 3px;
         background: #9FC;
         width: 140px;
         height: 8px;
     }
     div#karma {
+        margin-top: 3px;
         background: #9CF;
         width: 140px;
         height: 8px;
     }
-    .location {
+    
+    
+    /* location */
+    
+    #location {
+        clear: both;
+        float: left;
+        background: #FFF;
         width: 480px;
+        margin: 0 5px 0 0;
+        padding: 0 0 10px 0;
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
+    }
+    .hub_heading {
+        height: 90px;
+    }
+    #location h2 {
         margin: 0;
+        padding: 6px 10px 0 10px;
+        font-size: 14pt;
+        font-family: Verdana;
+        font-weight: bold;
+    }
+    #location p {
+        margin: 3px 10px 20px;
         padding: 0;
-    }
-    .location h2 {
-        margin: 10px 10px 0 10px;
-    }
-    .location p {
-        margin: 5px 10px 20px;
         width: 460px;
     }
     .lot_images {
         width: 480px;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
     }
     #lot_description {
-        height: 30px;
+        height: 40px;
         padding: 10px;
+    }
+    #map {
+        height: 370px;
+    }
+    #location h3 {
+        margin: 10px;
+    }
+    .lot_heading {
+        background: #EBEBE2;
+        height: 108px;
+        border-bottom: 1px solid #000;
+    }
+    .lot_heading img {
+        float: left;
+        width: 60;
+        height: 108;
+    }
+    .lot_name {
+        text-align: center;
+        padding: 20px;
+    }
+    .lot_exit {
+        text-align: center;
+        float: right;
+        padding: 20px;
+    }
+    .lot_contents {
+        height: 532px;
     }
     a.exit_button {
         font-family: "Arial Narrow";
@@ -111,46 +174,60 @@
         text-decoration: none;
         background: #D00;
     }
-    a.quantity_link {
-        font-weight: bold;
-        text-decoration: none;
+    
+    
+    /* sidebar */
+    
+    #sidebar {
+        margin-top: 5px;
     }
-    form.hidden {
-        margin: 0;
-    }
+    
     div#whatshere {
-        width: 180px;
-        height: 133px;
+        float: left;
+        width: 163px;
+        height: 130px;
         overflow: auto;
         background: #FFF;
-        border: 1px solid #666;
+        border: 1px solid #000;
         padding: 3px;
     }
     div#whoshere {
         width: 120px;
-        height: 133px;
+        height: 130px;
         overflow: auto;
         background: #FFF;
-        border: 1px solid #666;
+        border: 1px solid #000;
         padding: 3px;
     }
+    
+    #whatshere h2, #whoshere h2 {
+        margin: 0;
+        padding: 0;
+        font-size: 8pt;
+        font-weight: bold;
+    }
+    #whatshere p, #whoshere p {
+        margin: 0;
+    }
+    
     .cap, .inmc {
         background: #FFF;
-        border: 1px solid #666;
+        border: 1px solid #000;
         padding: 3px;
     }
     .cap {
-        height: 213px;
-        width: 300px;
+        height: 205px;
+        width: 290px;
         overflow: auto;
     }
     .inmc {
-        height: 250px;
-        width: 300px;
+        height: 240;
+        width: 290px;
         overflow: auto;
     }
     #cap_tabs, #inmc_tabs {
         padding: 3px 0;
+        margin: 5px 5px 0;
     }
     #cap_tabs a, #inmc_tabs a {
         background: #CEF;
@@ -158,9 +235,9 @@
         padding: 3px 6px;
         text-decoration: none;
         font-weight: bold;
-        border-top: 1px solid #666;
-        border-left: 1px solid #666;
-        border-right: 1px solid #666;
+        border-top: 1px solid #000;
+        border-left: 1px solid #000;
+        border-right: 1px solid #000;
     }
     #cap_tabs a.selected, #inmc_tabs a.selected {
         background: #FFF;
@@ -169,8 +246,12 @@
         position: relative;
         bottom: -1px;
     }
+    
+    
+    /* chat */
+    
     div.message_area {
-        height: 180px;
+        height: 170px;
         overflow: auto;
     }
     div.message_area ul {
@@ -183,25 +264,38 @@
     }
     #message {
         margin: 2px;
-        width: 296px;
+        width: 285px;
         background: #EEE;
     }
     .message_player {
         color: #F66;
     }
-    #whatshere h2, #whoshere h2 {
-        margin: 0;
-        padding: 0;
-        font-size: 8pt;
+    
+    
+    /* general */
+    
+    a.quantity_link {
         font-weight: bold;
+        text-decoration: none;
     }
+    
+    form.hidden {
+        display: none;
+        margin: 0;
+    }
+    
     ul.item_list {
+        margin: 4px;
         list-style: none;
         padding-left: 16px;
         text-indent: -16px;
     }
     ul.item_list img {
         vertical-align: middle;
+    }
+    ul.person_list {
+        margin: 4px;
+        padding-left: 16px;
     }
     </style>
 {% endblock %}
@@ -214,234 +308,220 @@
     
     <h1>{{ player.name }}</h1>
     
-    <table class="game_screen">
+    <div id="game_screen">
         
-        <tr class="top_bar">
-            <td class="control_panel">
+        <div id="top_bar">
+            <div id="control_panel">
                 <p><a href="">Refresh</a> |
                 Report a bug |
                 Save &amp; Exit</p>
                 <h1>DJANGO-MMO</h1>
-            </td>
-            <td class="user_info">
+            </div>
+            <div id="user_info">
                 <span class="player_name">{{ player.name }}</span> $ <span class="player_balance">{{ player.balance }}</span><br />
                 Level <b>{{ player.level }}</b> - xp: <b>{{ player.xp }}</b><br />
                 (next level at {{ player.next_level_at }})
-            </td>
-            <td class="user_statistics">
+            </div>
+            <div id="user_statistics">
                 <table>
                     <tr><td class="stat"><b>energy</b></td><td width="150"><div id="energy">&nbsp;</div></td><td>{{ player.energy }}/5000</td></tr>
                     <tr><td class="stat"><b>mood</b></td><td><div id="mood">&nbsp;</div></td><td>{{ player.mood }}/200</td></tr>
                     <tr><td class="stat"><b>karma</b></td><td><div id="karma">&nbsp;</div></td><td>{{ player.karma }}/200</td></tr>
                 </table>
-            </td>
-        </tr>
+            </div>
+        </div>
         
-        <tr>
-            <td colspan="2" valign="top" class="location">
-                {% if player.location.lot %}
-                    <table width="100%" style="border-spacing: 0;">
-                        <tr style="background: #EBEBE2;">
-                            <td><img style="float: left;" src="/static/images/lots/lot_{{ player.location.lot.image_code }}.png" width="60" height="108"/></td>
-                            <td align="center">
-                                You are in:
-                                <h2>{{ player.location.lot.name }}</h2>
-                            </td>
-                            <td align="center">
-                                <form id="exit_lot" method="POST" action=""><input type="hidden" name="exit_to" value="{{ player.location.lot.hub.id}}" /></form>
-                                <a class="exit_button" href="#" onclick="$('#exit_lot').submit()">exit</a><br />
-                                back to<br /><b>{{ player.location.lot.hub }}</b>
-                                </form>
-                            </td>
-                        </tr>
-                    </table>
-                {% else %}
+        <div id="location">
+            {% if player.location.lot %}
+                <div class="lot_heading">
+                    <img src="/static/images/lots/lot_{{ player.location.lot.image_code }}.png"/>
+                    <div class="lot_exit">
+                        <form class="hidden" id="exit_lot" method="POST" action=""><input type="hidden" name="exit_to" value="{{ player.location.lot.hub.id}}" /></form>
+                        <a class="exit_button" href="#" onclick="$('#exit_lot').submit()">exit</a><br />
+                        back to<br /><b>{{ player.location.lot.hub }}</b>
+                        </form>
+                    </div>
+                    <div class="lot_name">
+                        You are in:
+                        <h2>{{ player.location.lot.name }}</h2>
+                    </div>
+                </div>
+                <div class="lot_contents"></div>
+            {% else %}
+                <div class="hub_heading">
                     <h2>{{ player.location.hub.name }}</h2>
                     <p>{{ player.location.hub.description }}</p>
-                    
-                    <div class="lot_images">{% for lot in player.location.hub.lots %}{% if lot %}<img src="/static/images/lots/lot_{{ lot.image_code }}.png" width="60" height="108" class="lot_image" id="lot_image_{{ lot.position }}"/>{% else %}<img src="/static/images/lots/lot_0.png" width="60" height="108" class="lot_image"/>{% endif %}{% endfor %}</div>
-                    
-                    <div id="lot_description"></div>
-                    
-                    <form style="display: none;" method="POST" action="" id="enter_lot"><input id="enter_lot_id" type="hidden" name="enter" value="" /></form>
-                    
+                </div>
+                <div class="lot_images">{% for lot in player.location.hub.lots %}{% if lot %}<img src="/static/images/lots/lot_{{ lot.image_code }}.png" width="60" height="108" class="lot_image" id="lot_image_{{ lot.position }}"/>{% else %}<img src="/static/images/lots/lot_0.png" width="60" height="108" class="lot_image"/>{% endif %}{% endfor %}</div>
+                
+                <div id="lot_description"></div>
+                
+                <form class="hidden" method="POST" action="" id="enter_lot"><input id="enter_lot_id" type="hidden" name="enter" value="" /></form>
+                
+                <div id="map">
                     <h3>Roads</h3>
-                    
+                
                     <p>In the absence of the map, clicking on an adjacent hub below is how you travel around at the moment.</p>
-                    
+                
                     {% if player.location.hub.roads %}
                         <ul>
                             {% for road in player.location.hub.roads %}
-                                <form id="travel_{{ road.destination.id }}" style="display: none;" method="POST" action=""><input type="hidden" name="travel_to" value="{{ road.destination.id}}" /></form>
+                                <form id="travel_{{ road.destination.id }}" class="hidden" method="POST" action=""><input type="hidden" name="travel_to" value="{{ road.destination.id}}" /></form>
                                 <li>{{ road.direction }} to <a href="#" onclick="$('#travel_{{ road.destination.id }}').submit()"><b>{{ road.destination }}</b></a></li>
                             {% endfor %}
                         </ul>
                     {% else %}
                         <p>No roads out of here.</p>
                     {% endif %}
-                    
-                {% endif %}
-            </td>
-            <td valign="top" style="background: #a7b7c7;">
-                <table>
-                    <tr>
-                        <td>
-                            <div id="whatshere">
-                                <h2>What's Here:</h2>
-                                
-                                {% if player.location.lot %}
-                                    {% if player.location.lot.what_is_here %}
-                                        <ul class="item_list">
-                                            {% for pile in player.location.lot.what_is_here %}
-                                                <form class="hidden" id="pickup_{{ pile.id }}" method="POST" action=""><input type="hidden" name="pickup_pile" value="{{ pile.id }}" /><input id="pickup_quantity_{{ pile.id }}" type="hidden" name="quantity" value="0" /></form>
-                                                <li><img src="/static/images/items/item_small_{{ pile.item_type.icon_code }}.png" />{{ pile.item_type }} [<b>{{ pile.total_quantity }}</b>]<br />
-                                                    pick up 
-                                                    {% for q in pile.pickup_list %}[<a class="quantity_link" href="#" onclick="$('#pickup_quantity_{{ pile.id }}').val('{{ q }}'); $('#pickup_{{ pile.id }}').submit()">{{ q }}</a>]
-                                                    {% endfor %}
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    {% else %}
-                                        <p>Nothing here.</p>
-                                    {% endif %}
-                                
-                                {% else %}
-                                
-                                    {% if player.location.hub.what_is_here %}
-                                        <ul class="item_list">
-                                            {% for pile in player.location.hub.what_is_here %}
-                                            <form class="hidden" id="pickup_{{ pile.id }}" method="POST" action=""><input type="hidden" name="pickup_pile" value="{{ pile.id }}" /><input id="pickup_quantity_{{ pile.id }}" type="hidden" name="quantity" value="0" /></form>
-                                                <li><img src="/static/images/items/item_small_{{ pile.item_type.icon_code }}.png" />{{ pile.item_type }} [<b>{{ pile.total_quantity }}</b>]<br />
-                                                    pick up 
-                                                    {% for q in pile.pickup_list %}[<a class="quantity_link" href="#" onclick="$('#pickup_quantity_{{ pile.id }}').val('{{ q }}'); $('#pickup_{{ pile.id }}').submit()">{{ q }}</a>]
-                                                    {% endfor %}
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    {% else %}
-                                        <p>Nothing here.</p>
-                                    {% endif %}
-                                
-                                {% endif %}
-                            </div>
-                        </td>
-                        <td>
-                            <div id="whoshere">
-                                <h2>Who's Here:</h2>
-                                
-                                {% if player.location.lot %}
-                                    {% ifequal player.location.lot.who_is_here.0 1 %}
-                                        <p>Just you.</p>
-                                    {% else %}
-                                        <ul>
-                                            {% for other_player in player.location.lot.who_is_here.1 %}
-                                                {% ifequal player other_player %}
-                                                {% else %}
-                                                    <li>{{ other_player}}</li>
-                                                {% endifequal %}
-                                            {% endfor %}
-                                        </ul>
-                                    {% endifequal %}
-                                
-                                {% else %}
-                                
-                                    {% ifequal player.location.hub.who_is_here.0 1 %}
-                                        <p>Just you.</p>
-                                    {% else %}
-                                        <ul>
-                                            {% for other_player in player.location.hub.who_is_here.1 %}
-                                                {% ifequal player other_player %}
-                                                {% else %}
-                                                    <li>{{ other_player}}</li>
-                                                {% endifequal %}
-                                            {% endfor %}
-                                        </ul>
-                                    {% endifequal %}
-                                
-                                {% endif %}
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="background: #a7b7c7;">
-                            <div id="cap_tabs">
-                                <a id="chat_tab" href="#" onclick="$('.cap').hide(); $('#chat').show(); $('#cap_tabs a').removeClass('selected'); $('#chat_tab').addClass('selected'); return false;">Chat</a>
-                                <a id="activity_log_tab" href="#" onclick="$('.cap').hide(); $('#activity_log').show(); $('#cap_tabs a').removeClass('selected'); $('#activity_log_tab').addClass('selected'); return false;">Activity Log</a>
-                                <a id="prefs_tab" href="#" onclick="$('.cap').hide(); $('#prefs').show(); $('#cap_tabs a').removeClass('selected'); $('#prefs_tab').addClass('selected'); return false;">Prefs</a>
-                            </div>
-                            
-                            <div id="chat" class="cap">
-                                <form id="chatform">
-                                    <input type="text" name="message" value="" id="message">
-                                    <input type="hidden" name="player_id" value="{{ player.id }}">
-                                </form>
-                                <div class="message_area"></div>
-                            </div>
-                            <div id="activity_log" class="cap">
-                                @@@ activity log not yet implemented
-                            </div>
-                            <div id="prefs" class="cap">
-                            </div>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td colspan="2">
-                            <div id="inmc_tabs">
-                                <a id="inventory_tab" href="#" onclick="$('.inmc').hide(); $('#inventory').show(); $('#inmc_tabs a').removeClass('selected'); $('#inventory_tab').addClass('selected'); return false;">Inventory</a>
-                                <a id="notes_tab" href="#" onclick="$('.inmc').hide(); $('#notes').show(); $('#inmc_tabs a').removeClass('selected'); $('#notes_tab').addClass('selected'); return false;">Notes</a>
-                                <a id="making_tab" href="#" onclick="$('.inmc').hide(); $('#making').show(); $('#inmc_tabs a').removeClass('selected'); $('#making_tab').addClass('selected'); return false;">Making</a>
-                                <a id="contacts_tab" href="#" onclick="$('.inmc').hide(); $('#contacts').show(); $('#inmc_tabs a').removeClass('selected'); $('#contacts_tab').addClass('selected'); return false;">Contacts</a>
-                            </div>
-                            
-                            <div id="inventory" class="inmc">
-                                {% if player.inventory %}
-                                    <ul class="item_list">
-                                        {% for pile in player.inventory %}
-                                            <form class="hidden" id="drop_{{ pile.id }}" method="POST" action=""><input type="hidden" name="drop_pile" value="{{ pile.id }}" /><input id="drop_quantity_{{ pile.id }}" type="hidden" name="quantity" value="0" /></form>
-                                            <li><img src="/static/images/items/item_small_{{ pile.item_type.icon_code }}.png" />{{ pile.item_type }} [<b>{{ pile.quantity }}</b>]<br />
-                                                drop
-                                                {% for q in pile.drop_list %}[<a class="quantity_link" href="#" onclick="$('#drop_quantity_{{ pile.id }}').val('{{ q }}'); $('#drop_{{ pile.id }}').submit()">{{ q }}</a>]
-                                                {% endfor %}
-                                            </li>
+                </div>
+            {% endif %}
+        </div>
+        
+        <div id="sidebar">
+            <div id="here">
+                <div id="whatshere">
+                    <h2>What's Here:</h2>
+            
+                    {% if player.location.lot %}
+                        {% if player.location.lot.what_is_here %}
+                            <ul class="item_list">
+                                {% for pile in player.location.lot.what_is_here %}
+                                    <form class="hidden" id="pickup_{{ pile.id }}" method="POST" action=""><input type="hidden" name="pickup_pile" value="{{ pile.id }}" /><input id="pickup_quantity_{{ pile.id }}" type="hidden" name="quantity" value="0" /></form>
+                                    <li><img src="/static/images/items/item_small_{{ pile.item_type.icon_code }}.png" />{{ pile.item_type }} [<b>{{ pile.total_quantity }}</b>]<br />
+                                        pick up 
+                                        {% for q in pile.pickup_list %}[<a class="quantity_link" href="#" onclick="$('#pickup_quantity_{{ pile.id }}').val('{{ q }}'); $('#pickup_{{ pile.id }}').submit()">{{ q }}</a>]
                                         {% endfor %}
-                                    </ul>
-                                {% else %}
-                                    <p>Nothing.</p>
-                                {% endif %}
-                            </div>
-                            
-                            <div id="notes" class="inmc">
-                                @@@ notes not yet implemented
-                            </div>
-                            
-                            <div id="making" class="inmc">
-                                {% if player.make_list %}
-                                    <ul class="item_list">
-                                        {% for target in player.make_list %}
-                                            <form style="display: none;" id="make_{{ target.id }}" method="POST" action=""><input type="hidden" name="make_target" value="{{ target.id }}" /></form>
-                                            <li><img src="/static/images/items/item_small_{{ target.item_type.icon_code }}.png" /><b>{% ifequal target.quantity 1 %}{{ target.item_type }}{% else %}({{ target.quantity }}) {{ target.item_type }}{% endifequal %}</b> [<a href="#" onclick="$('#make_{{ target.id }}').submit()"><b>make</b></a>]<br />
-                                                requires:
-                                                {% for ingredient in target.makeingredient_set.all %}
-                                                    <br />{% ifequal ingredient.quantity 1 %}{{ ingredient.item_type }}{% else %}{{ ingredient.item_type }} ({{ ingredient.quantity }}){% endifequal %}
-                                                {% endfor %}
-                                            </li>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>Nothing here.</p>
+                        {% endif %}
+                
+                    {% else %}
+                
+                        {% if player.location.hub.what_is_here %}
+                            <ul class="item_list">
+                                {% for pile in player.location.hub.what_is_here %}
+                                <form class="hidden" id="pickup_{{ pile.id }}" method="POST" action=""><input type="hidden" name="pickup_pile" value="{{ pile.id }}" /><input id="pickup_quantity_{{ pile.id }}" type="hidden" name="quantity" value="0" /></form>
+                                    <li><img src="/static/images/items/item_small_{{ pile.item_type.icon_code }}.png" />{{ pile.item_type }} [<b>{{ pile.total_quantity }}</b>]<br />
+                                        pick up 
+                                        {% for q in pile.pickup_list %}[<a class="quantity_link" href="#" onclick="$('#pickup_quantity_{{ pile.id }}').val('{{ q }}'); $('#pickup_{{ pile.id }}').submit()">{{ q }}</a>]
                                         {% endfor %}
-                                    </ul>
-                                {% else %}
-                                    <p>Nothing at the moment.</p>
-                                {% endif %}
-                            </div>
-                            
-                            <div id="contacts" class="inmc">
-                                @@@ contacts not yet implemented
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>Nothing here.</p>
+                        {% endif %}
+                
+                    {% endif %}
+                </div>
+                <div id="whoshere">
+                    <h2>Who's Here:</h2>
+            
+                    {% if player.location.lot %}
+                        {% ifequal player.location.lot.who_is_here.0 1 %}
+                            <p>Just you.</p>
+                        {% else %}
+                            <ul class="person_list">
+                                {% for other_player in player.location.lot.who_is_here.1 %}
+                                    {% ifequal player other_player %}
+                                    {% else %}
+                                        <li>{{ other_player}}</li>
+                                    {% endifequal %}
+                                {% endfor %}
+                            </ul>
+                        {% endifequal %}
+                
+                    {% else %}
+                
+                        {% ifequal player.location.hub.who_is_here.0 1 %}
+                            <p>Just you.</p>
+                        {% else %}
+                            <ul class="person_list">
+                                {% for other_player in player.location.hub.who_is_here.1 %}
+                                    {% ifequal player other_player %}
+                                    {% else %}
+                                        <li>{{ other_player}}</li>
+                                    {% endifequal %}
+                                {% endfor %}
+                            </ul>
+                        {% endifequal %}
+                
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div>
+                <div id="cap_tabs">
+                    <a id="chat_tab" href="#" onclick="$('.cap').hide(); $('#chat').show(); $('#cap_tabs a').removeClass('selected'); $('#chat_tab').addClass('selected'); return false;">Chat</a>
+                    <a id="activity_log_tab" href="#" onclick="$('.cap').hide(); $('#activity_log').show(); $('#cap_tabs a').removeClass('selected'); $('#activity_log_tab').addClass('selected'); return false;">Activity Log</a>
+                    <a id="prefs_tab" href="#" onclick="$('.cap').hide(); $('#prefs').show(); $('#cap_tabs a').removeClass('selected'); $('#prefs_tab').addClass('selected'); return false;">Prefs</a>
+                </div>
+                <div id="chat" class="cap">
+                    <form id="chatform">
+                        <input type="text" name="message" value="" id="message">
+                        <input type="hidden" name="player_id" value="{{ player.id }}">
+                    </form>
+                    <div class="message_area"></div>
+                </div>
+                <div id="activity_log" class="cap">
+                    @@@ activity log not yet implemented
+                </div>
+                <div id="prefs" class="cap"></div>
+            </div>
+            
+            <div>
+                <div id="inmc_tabs">
+                    <a id="inventory_tab" href="#" onclick="$('.inmc').hide(); $('#inventory').show(); $('#inmc_tabs a').removeClass('selected'); $('#inventory_tab').addClass('selected'); return false;">Inventory</a>
+                    <a id="notes_tab" href="#" onclick="$('.inmc').hide(); $('#notes').show(); $('#inmc_tabs a').removeClass('selected'); $('#notes_tab').addClass('selected'); return false;">Notes</a>
+                    <a id="making_tab" href="#" onclick="$('.inmc').hide(); $('#making').show(); $('#inmc_tabs a').removeClass('selected'); $('#making_tab').addClass('selected'); return false;">Making</a>
+                    <a id="contacts_tab" href="#" onclick="$('.inmc').hide(); $('#contacts').show(); $('#inmc_tabs a').removeClass('selected'); $('#contacts_tab').addClass('selected'); return false;">Contacts</a>
+                </div>
+                <div id="inventory" class="inmc">
+                    {% if player.inventory %}
+                        <ul class="item_list">
+                            {% for pile in player.inventory %}
+                                <form class="hidden" id="drop_{{ pile.id }}" method="POST" action=""><input type="hidden" name="drop_pile" value="{{ pile.id }}" /><input id="drop_quantity_{{ pile.id }}" type="hidden" name="quantity" value="0" /></form>
+                                <li><img src="/static/images/items/item_small_{{ pile.item_type.icon_code }}.png" />{{ pile.item_type }} [<b>{{ pile.quantity }}</b>]<br />
+                                    drop
+                                    {% for q in pile.drop_list %}[<a class="quantity_link" href="#" onclick="$('#drop_quantity_{{ pile.id }}').val('{{ q }}'); $('#drop_{{ pile.id }}').submit()">{{ q }}</a>]
+                                    {% endfor %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Nothing.</p>
+                    {% endif %}
+                </div>
+                <div id="notes" class="inmc">
+                    @@@ notes not yet implemented
+                </div>
+                <div id="making" class="inmc">
+                    {% if player.make_list %}
+                        <ul class="item_list">
+                            {% for target in player.make_list %}
+                                <form class="hidden" id="make_{{ target.id }}" method="POST" action=""><input type="hidden" name="make_target" value="{{ target.id }}" /></form>
+                                <li><img src="/static/images/items/item_small_{{ target.item_type.icon_code }}.png" /><b>{% ifequal target.quantity 1 %}{{ target.item_type }}{% else %}({{ target.quantity }}) {{ target.item_type }}{% endifequal %}</b> [<a href="#" onclick="$('#make_{{ target.id }}').submit()"><b>make</b></a>]<br />
+                                    requires:
+                                    {% for ingredient in target.makeingredient_set.all %}
+                                        <br />{% ifequal ingredient.quantity 1 %}{{ ingredient.item_type }}{% else %}{{ ingredient.item_type }} ({{ ingredient.quantity }}){% endifequal %}
+                                    {% endfor %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Nothing at the moment.</p>
+                    {% endif %}
+                </div>
+                <div id="contacts" class="inmc">
+                    @@@ contacts not yet implemented
+                </div>
+            </div>
+        </div>
+        
+    </div>
     <script type="text/javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
