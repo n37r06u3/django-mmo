@@ -234,7 +234,7 @@
                 {% if player.location.lot %}
                     <table width="100%" style="border-spacing: 0;">
                         <tr style="background: #EBEBE2;">
-                            <td><img style="float: left;" src="/static/lot_{{ player.location.lot.image_code }}.png" width="60" height="108"/></td>
+                            <td><img style="float: left;" src="/static/images/lots/lot_{{ player.location.lot.image_code }}.png" width="60" height="108"/></td>
                             <td align="center">
                                 You are in:
                                 <h2>{{ player.location.lot.name }}</h2>
@@ -251,7 +251,7 @@
                     <h2>{{ player.location.hub.name }}</h2>
                     <p>{{ player.location.hub.description }}</p>
                     
-                    <div class="lot_images">{% for lot in player.location.hub.lots %}{% if lot %}<img src="/static/lot_{{ lot.image_code }}.png" width="60" height="108" class="lot_image" id="lot_image_{{ lot.position }}"/>{% else %}<img src="/static/lot_0.png" width="60" height="108" class="lot_image"/>{% endif %}{% endfor %}</div>
+                    <div class="lot_images">{% for lot in player.location.hub.lots %}{% if lot %}<img src="/static/images/lots/lot_{{ lot.image_code }}.png" width="60" height="108" class="lot_image" id="lot_image_{{ lot.position }}"/>{% else %}<img src="/static/images/lots/lot_0.png" width="60" height="108" class="lot_image"/>{% endif %}{% endfor %}</div>
                     
                     <div id="lot_description"></div>
                     
