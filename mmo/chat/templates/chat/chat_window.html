@@ -20,7 +20,7 @@
       function updateChat() {
         num = Math.random();
         $('div.message_area').load('/chat/update_chat/?'+num);   
-        setTimeout('updateChat()', 1000);       
+        setTimeout('updateChat()', 10000);       
       }
     </script>
 {% endblock %}
