@@ -71,3 +71,13 @@ def player_view(request, player_id):
     return render_to_response("player/player_detail.html", {
         "player": player,
     })
+
+
+def who_is_here(request, player_id):
+	player = Player.objects.get(pk=player_id)
+	if player.location.lot == None:
+		player_list = Player.objects.all()
+		player_list = Player.objects.filter(location__hub=player.location.hub, location__lot__isnull=True)
+	else:	
+		player_list = Player.objects.filter(location__hub=player.location.hub, location__lot=player.location.lot)
+ 	return render_to_response('player/who_is_here.html', { 'players':player_list })
