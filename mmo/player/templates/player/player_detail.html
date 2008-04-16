@@ -570,8 +570,13 @@
           $('div.message_area').load('/chat/update_chat/?' + num);
           setTimeout('updateChat()', 1000);
       }
-      
+	function updateWhatsHere() {
+		num = Math.random();
+		$('div#whatshere').load('/items/whatshere/{{ player.id }}/?' + num);
+		setTimeout('updateWhatsHere()', 1000);
+	}
       updateChat();
+	updateWhatsHere();
     </script>
 	
 {% endblock %}
