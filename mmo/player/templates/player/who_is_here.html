@@ -1,10 +1,14 @@
 <h2>Who's Here:</h2>
 
-{% for other_player in players %}
-{% ifequal player other_player %}
-{% else %}
 <ul class="person_list">
-	<li>{{ other_player }}</li>
+{% if players|length_is:"1" %}
+	<li>No one</li>
+{% else %}
+	{% for other_player in players %}
+		{% ifequal player other_player %}
+		{% else %}
+			<li>{{ other_player }}</li>
+		{% endifequal %}
+	{% endfor %}
+{% endif %}
 </ul>
-{% endifequal %}
-{% endfor %}
