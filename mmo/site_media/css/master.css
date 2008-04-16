@@ -1,0 +1,291 @@
+/* game screen */
+
+#game_screen {
+    width: 820px;
+    height: 720px;
+    background: #a7b7c7;
+    font-family: Verdana;
+    font-size: 8pt;
+    border: 1px solid #666;
+}
+
+
+/* top bar */
+
+#top_bar {
+    background: #5C8699;
+    height: 60px;
+}
+
+#control_panel {
+    float: left;
+    width: 280px;
+    margin: 0;
+    padding: 5px 15px 5px 5px;
+}
+#user_info {
+    float: left;
+    width: 160px;
+    margin: 0;
+    padding: 5px 15px;
+}
+#user_statistics {
+    margin: 0;
+    padding: 5px 5px 5px 5px;
+}
+
+#control_panel p {
+    margin: 0;
+    color: #FFF;
+}
+#control_panel a {
+    color: #FFF;
+    font-weight: bold;
+    text-decoration: none;
+}
+#control_panel h1 {
+    margin: 3px 2px;
+    padding: 2px 5px;
+    font-size: 14pt;
+    color: #EEE0E7;
+    background-color: #A54958;
+    border: 1px solid #000;
+}
+#user_info {
+    color: #FFF;
+}
+.player_name {
+    font-size: 10pt;
+    font-weight: bold;
+    margin-right: 1em;
+    color: #96E3FE;
+}
+.player_balance {
+    font-size: 10pt;
+    font-weight: bold;
+    color: #FFF595;
+}
+#user_statistics td {
+    padding: 0 2px;
+    color: #FFF;
+    font-size: 8pt;
+}
+#user_statistics .stat {
+    text-align: right;
+}
+div#energy {
+    margin-top: 3px;
+    background: #F9C;
+    width: 140px;
+    height: 8px;
+}
+div#mood {
+    margin-top: 3px;
+    background: #9FC;
+    width: 140px;
+    height: 8px;
+}
+div#karma {
+    margin-top: 3px;
+    background: #9CF;
+    width: 140px;
+    height: 8px;
+}
+
+
+/* location */
+
+#location {
+    clear: both;
+    float: left;
+    background: #FFF;
+    width: 480px;
+    margin: 0 5px 0 0;
+    padding: 0 0 10px 0;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+.hub_heading {
+    height: 90px;
+}
+#location h2 {
+    margin: 0;
+    padding: 6px 10px 0 10px;
+    font-size: 14pt;
+    font-family: Verdana;
+    font-weight: bold;
+}
+#location p {
+    margin: 3px 10px 20px;
+    padding: 0;
+    width: 460px;
+}
+.lot_images {
+    width: 480px;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+#lot_description {
+    height: 40px;
+    padding: 10px;
+}
+#map {
+    height: 370px;
+}
+#location h3 {
+    margin: 10px;
+}
+.lot_heading {
+    background: #EBEBE2;
+    height: 108px;
+    border-bottom: 1px solid #000;
+}
+.lot_heading img {
+    float: left;
+    width: 60;
+    height: 108;
+}
+.lot_name {
+    text-align: center;
+    padding: 20px;
+}
+.lot_exit {
+    text-align: center;
+    float: right;
+    padding: 20px;
+}
+.lot_contents {
+    height: 532px;
+}
+a.exit_button {
+    font-family: "Arial Narrow";
+    text-transform: uppercase;
+    padding: 2px;
+    font-size: 16pt;
+    color: #FFF;
+    text-decoration: none;
+    background: #D00;
+}
+
+
+/* sidebar */
+
+#sidebar {
+    margin-top: 5px;
+}
+
+div#whatshere {
+    float: left;
+    width: 163px;
+    height: 130px;
+    overflow: auto;
+    background: #FFF;
+    border: 1px solid #000;
+    padding: 3px;
+}
+div#whoshere {
+    width: 120px;
+    height: 130px;
+    overflow: auto;
+    background: #FFF;
+    border: 1px solid #000;
+    padding: 3px;
+}
+
+#whatshere h2, #whoshere h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 8pt;
+    font-weight: bold;
+}
+#whatshere p, #whoshere p {
+    margin: 0;
+}
+
+.cap, .inmc {
+    background: #FFF;
+    border: 1px solid #000;
+    padding: 3px;
+}
+.cap {
+    height: 205px;
+    width: 290px;
+    overflow: auto;
+}
+.inmc {
+    height: 240;
+    width: 290px;
+    overflow: auto;
+}
+#cap_tabs, #inmc_tabs {
+    padding: 3px 0;
+    margin: 5px 5px 0;
+}
+#cap_tabs a, #inmc_tabs a {
+    background: #CEF;
+    color: #036;
+    padding: 3px 6px;
+    text-decoration: none;
+    font-weight: bold;
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}
+#cap_tabs a.selected, #inmc_tabs a.selected {
+    background: #FFF;
+    color: #936;
+    padding-top: 4px;
+    position: relative;
+    bottom: -1px;
+}
+
+
+/* chat */
+
+div.message_area {
+    height: 170px;
+    overflow: auto;
+}
+div.message_area ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 5px;
+}
+#chatform {
+    margin: 0;
+}
+#message {
+    margin: 2px;
+    width: 285px;
+    background: #EEE;
+}
+.message_player {
+    color: #F66;
+}
+
+
+/* general */
+
+a.quantity_link {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+form.hidden {
+    display: none;
+    margin: 0;
+}
+
+ul.item_list {
+    margin: 4px;
+    list-style: none;
+    padding-left: 16px;
+    text-indent: -16px;
+}
+ul.item_list img {
+    vertical-align: middle;
+}
+ul.person_list {
+    margin: 4px;
+    padding-left: 16px;
+}
