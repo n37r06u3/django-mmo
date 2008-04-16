@@ -1,5 +1,8 @@
-
+<h2>What's Here</h2>
 <ul class='item_list'>
+{% if objects|length_is:"0"  %}
+	<li>Nothing</li>
+{% else %}
 {% for pile in objects %}
     <li><img src="/static/images/items/item_small_{{ pile.item_type.icon_code }}.png">{{ pile.item_type }} [<b>{{ pile.total_quantity }}</b>]<br />
         <form class="hidden" id="pickup_{{ pile.id }}" method="POST" action=""><input type="hidden" name="pickup_pile" value="{{ pile.id }}" /><input id="pickup_quantity_{{ pile.id }}" type="hidden" name="quantity" value="0" /></form>
@@ -9,4 +12,5 @@
         </form>
     </li>
 {% endfor %}
+{% endif %}
 </ul>
