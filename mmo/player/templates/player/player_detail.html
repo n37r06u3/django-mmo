@@ -575,8 +575,14 @@
 		$('div#whatshere').load('/items/whatshere/{{ player.id }}/?' + num);
 		setTimeout('updateWhatsHere()', 1000);
 	}
+	function updateWhosHere() {
+		num = Math.random();
+		$('div#whoshere').load('/player/who_is_here/{{ player.id }}/?' + num)
+		setTimeout('updateWhosHere()', 1000);
+	}
       updateChat();
 	updateWhatsHere();
+	updateWhosHere();
     </script>
 	
 {% endblock %}
