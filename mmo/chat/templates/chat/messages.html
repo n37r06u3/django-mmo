@@ -1,5 +1,5 @@
 <ul>
 {% for message in messages %}
-    <li><span class="message_player">{{ message.player }}</span>: {{ message.message }}</li>
+    <li><span class="message_player">{% ifequal player message.player %}You{% else %}{{ message.player }}{% endifequal %}</span>: {{ message.message }}</li>
 {% endfor %}
 </ul>
