@@ -262,6 +262,9 @@ div.message_area ul {
 .message_player {
     color: #F66;
 }
+.message_self { 
+	color: #66F;
+}
 
 
 /* general */
