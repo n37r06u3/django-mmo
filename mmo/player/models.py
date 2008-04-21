@@ -32,6 +32,17 @@ class Player(models.Model):
     def inventory(self):
         return InventoryPile.objects.filter(player=self)
     
+    def max_weight(self):
+        # this could possibly not be a static value.
+        return "150"
+    
+    def current_weight(self):
+        current_weight = 0
+        inventory = InventoryPile.objects.filter(player=self)
+        for object in inventory:
+            current_weight += (object.item_type.weight * object.quantity)
+        return str(current_weight)
+    
     def add_to_inventory(self, item_type, quantity):
         pile, created = InventoryPile.objects.get_or_create(item_type=item_type, player=self, defaults={'quantity': 0})
         pile.increase(quantity)
