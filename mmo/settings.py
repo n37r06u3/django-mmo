@@ -82,6 +82,7 @@ INSTALLED_APPS = (
     'mmo.player',
     'mmo.items',
     'mmo.chat',
+    'mmo.notes',
 )
 
 try:
