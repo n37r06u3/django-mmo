@@ -81,6 +81,10 @@ class Player(models.Model):
             pile.reduce(ingredient.quantity)
         self.add_to_inventory(target.item_type, target.quantity)
     
+    def notes(self):
+        from mmo.notes.models import Note
+        return Note.objects.get(player=self).notes
+    
     def __unicode__(self):
         return self.name
     
