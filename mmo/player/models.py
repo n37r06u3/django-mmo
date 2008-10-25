@@ -87,9 +87,6 @@ class Player(models.Model):
     
     def __unicode__(self):
         return self.name
-    
-    class Admin:
-        pass
 
 
 class InventoryPile(models.Model): # @@@ longing for model inheritance
@@ -126,6 +123,3 @@ class InventoryPile(models.Model): # @@@ longing for model inheritance
 
     def __unicode__(self):
         return u"%s has %s [%s]" % (self.player, self.item_type, self.quantity)
-
-    class Admin:
-        pass

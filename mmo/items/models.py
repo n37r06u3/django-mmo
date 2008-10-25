@@ -15,9 +15,6 @@ class ItemType(models.Model):
     
     def __unicode__(self):
         return self.name
-    
-    class Admin:
-        pass
 
 
 class LocationPile(models.Model): # @@@ longing for model inheritance
@@ -73,9 +70,6 @@ class LocationPile(models.Model): # @@@ longing for model inheritance
             return u"%s in %s every %s seconds (%s additional; now %s)" % (self.item_type, self.location_display(), self.regen, self.quantity, self.total_quantity())
         else:
             return u"%s [%s] in %s" % (self.item_type, self.total_quantity(), self.location_display())
-        
-    class Admin:
-        pass
 
 
 class MakeTarget(models.Model):
@@ -87,9 +81,6 @@ class MakeTarget(models.Model):
     
     def __unicode__(self):
         return u"%s x %s" % (self.quantity, self.item_type)
-    
-    class Admin:
-        pass
 
 
 class MakeIngredient(models.Model):
@@ -100,6 +91,3 @@ class MakeIngredient(models.Model):
     
     def __unicode__(self):
         return u"%s x %s for %s" % (self.quantity, self.item_type, self.target)
-    
-    class Admin:
-        pass

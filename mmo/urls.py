@@ -1,4 +1,7 @@
 from django.conf.urls.defaults import *
+from django.contrib import admin
+
+admin.autodiscover()
 
 import os.path
 
@@ -8,7 +11,7 @@ urlpatterns = patterns('',
     (r'^items/', include('mmo.items.urls')),
     (r'^chat/', include('mmo.chat.urls')),
     
-    (r'^admin/', include('django.contrib.admin.urls')),
+    (r'^admin/(.*)', admin.site.root),
 )
 
 from django.conf import settings

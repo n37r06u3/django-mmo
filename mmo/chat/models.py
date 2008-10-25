@@ -8,10 +8,6 @@ class Chat(models.Model):
 	player = models.ForeignKey(Player)
 	message = models.CharField(blank=False, max_length=255)
 	timestamp = models.DateTimeField(blank=True, default=datetime.datetime.now())
-	
-
-	class Admin:
-		pass
 
 	def __unicode__(self):
 		return "(%s) %s: %s" % (self.timestamp, self.player.name, self.message)

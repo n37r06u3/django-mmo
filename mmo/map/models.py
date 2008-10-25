@@ -38,9 +38,6 @@ class Hub(models.Model):
     
     def __unicode__(self):
         return self.name
-    
-    class Admin:
-        pass
 
 
 class Road(models.Model):
@@ -70,9 +67,6 @@ class Road(models.Model):
     
     def __unicode__(self):
         return "%s road from %s to %s" % (self.direction_two_from_one, self.hub_one, self.hub_two)
-    
-    class Admin:
-        pass
 
 
 class Lot(models.Model):
@@ -110,9 +104,6 @@ class Lot(models.Model):
     
     def __unicode__(self):
         return self.name
-    
-    class Admin:
-        pass
 
 
 class Location(models.Model):

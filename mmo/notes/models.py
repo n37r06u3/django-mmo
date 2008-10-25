@@ -9,8 +9,5 @@ class Note(models.Model):
     player = models.ForeignKey(Player)
     last_updated = models.DateTimeField(blank=True, default=datetime.datetime.now())
 
-    class Admin:
-        pass
-
     def __unicode__(self):
         return "%s's notes" % self.player.name
