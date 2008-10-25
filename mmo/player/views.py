@@ -49,8 +49,12 @@ def player_view(request, player_id):
             pile_id = request.POST["pickup_pile"]
             pile = LocationPile.objects.get(id=pile_id)
             quantity = int(request.POST["quantity"])
-            pile.reduce(quantity)
-            player.add_to_inventory(pile.item_type, quantity)
+            if pile.item_type.weight * quantity + player.current_weight <= player.max_weight:
+                pile.reduce(quantity)
+                player.add_to_inventory(pile.item_type, quantity)
+            else:
+                # FIXME: Needs to raise an error
+                pass
         elif "drop_pile" in request.POST:
             # @@@ check pile belongs to player and quantity is valid
             pile_id = request.POST["drop_pile"]
@@ -73,10 +77,10 @@ def player_view(request, player_id):
     })
 
 def who_is_here(request, player_id):
-	player = Player.objects.get(pk=player_id)
-	if player.location.lot == None:
-		player_list = Player.objects.all()
-		player_list = Player.objects.filter(location__hub=player.location.hub, location__lot__isnull=True)
-	else:
-		player_list = Player.objects.filter(location__hub=player.location.hub, location__lot=player.location.lot)
- 	return render_to_response('player/who_is_here.html', { 'players':player_list })
+    player = Player.objects.get(pk=player_id)
+    if player.location.lot == None:
+        player_list = Player.objects.all()
+        player_list = Player.objects.filter(location__hub=player.location.hub, location__lot__isnull=True)
+    else:
+        player_list = Player.objects.filter(location__hub=player.location.hub, location__lot=player.location.lot)
+    return render_to_response('player/who_is_here.html', { 'players':player_list })
