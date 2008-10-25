@@ -5,6 +5,7 @@ from datetime import datetime
 # @@@ GNE also looks like it had unique items, which aren't covered here yet
 
 class ItemType(models.Model):
+    """ Indicates an object that can be interacted with """
     
     name = models.CharField(max_length=30)
     description = models.TextField()
@@ -78,7 +79,7 @@ class LocationPile(models.Model): # @@@ longing for model inheritance
 
 
 class MakeTarget(models.Model):
-    
+    """ Represents something that can be created """
     quantity = models.PositiveIntegerField(default=1)
     item_type = models.ForeignKey(ItemType)
     
@@ -92,7 +93,7 @@ class MakeTarget(models.Model):
 
 
 class MakeIngredient(models.Model):
-    
+    """ Represents a combination of items that must be combined to make something """
     target = models.ForeignKey(MakeTarget)
     quantity = models.PositiveIntegerField(default=1)
     item_type = models.ForeignKey(ItemType)
