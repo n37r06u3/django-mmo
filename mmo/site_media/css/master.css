@@ -251,6 +251,14 @@ div.message_area ul {
     padding-left: 0;
     margin: 5px;
 }
+div.message_area ul li { 
+    padding: 2px;
+}
+div.message_area ul li.server_msg {
+    color: brown;
+    font-style: italic;
+    font-weight: bold;
+}
 #chatform {
     margin: 0;
 }
