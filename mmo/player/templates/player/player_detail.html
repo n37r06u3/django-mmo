@@ -207,19 +207,19 @@
       function updateChat() {
           num = Math.random();
           $('div.message_area').load('/chat/update_chat/{{ player.id }}/?' + num);
-          setTimeout('updateChat()', 1000);
+          setTimeout('updateChat()', 10000);
       }
 	function updateWhatsHere() {
 		num = Math.random();
 		$('div#whatshere').load('/items/whatshere/{{ player.id }}/?' + num);
-		setTimeout('updateWhatsHere()', 1000);
+		setTimeout('updateWhatsHere()', 10000);
 	}
 	function updateWhosHere() {
 		num = Math.random();
 		$('div#whoshere').load('/player/who_is_here/{{ player.id }}/?' + num)
-		setTimeout('updateWhosHere()', 1000);
+		setTimeout('updateWhosHere()', 10000);
 	}
-      updateChat();
+    updateChat();
 	updateWhatsHere();
 	updateWhosHere();
     </script>
