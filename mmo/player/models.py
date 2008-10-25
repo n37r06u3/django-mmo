@@ -32,21 +32,27 @@ class Player(models.Model):
     def inventory(self):
         return InventoryPile.objects.filter(player=self)
     
+    @property
     def max_weight(self):
         # this could possibly not be a static value.
-        return "150"
-    
+        return 150
+        
+    @property
     def current_weight(self):
         current_weight = 0
         inventory = InventoryPile.objects.filter(player=self)
         for object in inventory:
             current_weight += (object.item_type.weight * object.quantity)
-        return str(current_weight)
+        return current_weight
     
     def add_to_inventory(self, item_type, quantity):
-        pile, created = InventoryPile.objects.get_or_create(item_type=item_type, player=self, defaults={'quantity': 0})
-        pile.increase(quantity)
-        return pile.quantity
+        if not (item_type.weight * quantity + self.current_weight) > self.max_weight:
+            pile, created = InventoryPile.objects.get_or_create(item_type=item_type, player=self, defaults={'quantity': 0})
+            pile.increase(quantity)
+            return pile.quantity
+        else:
+            # FIXME: Should probably raise an exception here, not sure.
+            return 0
     
     def make_list(self):
         # what can I make?
