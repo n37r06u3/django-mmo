@@ -4,7 +4,7 @@ from mmo.player.models import Player
 from mmo.chat.models import ChatMessage, ServerMessage
 
 def chat(request):
-	""" displays chat output """
+    """ displays chat output """
     # FIXME: The way I'm combining querysets here seems hackish. Maybe I should go with MTI over ABC?
     global_messages = ChatMessage.objects.all()[:100]
     server_messages = ServerMessage.objects.all()[:100]
