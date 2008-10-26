@@ -1,4 +1,5 @@
 from django.contrib import admin
-from mmo.chat.models import Chat
+from mmo.chat.models import ChatMessage, ServerMessage
 
-admin.site.register(Chat)
+admin.site.register(ChatMessage)
+admin.site.register(ServerMessage)
