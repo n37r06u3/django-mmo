@@ -65,6 +65,15 @@ def player_view(request, player_id):
                 player.location.lot.drop_here(pile.item_type, quantity)
             else:
                 player.location.hub.drop_here(pile.item_type, quantity)
+        elif "drop_all" in request.POST:
+            piles = InventoryPile.objects.filter(player=player)
+            for pile in piles:
+                quantity = pile.quantity
+                pile.reduce(quantity)
+                if player.location.lot:
+                    player.location.lot.drop_here(pile.item_type, quantity)
+                else:
+                    player.location.hub.drop_here(pile.item_type, quantity)
         elif "make_target" in request.POST:
             # @@@ need to double check can actually be made
             target_id = request.POST["make_target"]

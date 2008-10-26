@@ -118,7 +118,8 @@
                     <a id="contacts_tab" href="#" onclick="$('.inmc').hide(); $('#contacts').show(); $('#inmc_tabs a').removeClass('selected'); $('#contacts_tab').addClass('selected'); return false;">Contacts</a>
                 </div>
                 <div id="inventory" class="inmc">
-                    <p>Current Weight: {{ player.current_weight }} / {{ player.max_weight }}</p>
+                    <form class="hidden" id="drop_all" method="POST" action=""><input type="hidden" name="drop_all" value="1"></form>
+                    <p>Current Weight: {{ player.current_weight }} / {{ player.max_weight }} [<a href="#" onclick="$('#drop_all').submit()">drop all</a>]</p>
                     {% if player.inventory %}
                         <ul class="item_list">
                             {% for pile in player.inventory %}
