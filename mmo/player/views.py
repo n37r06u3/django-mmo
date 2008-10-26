@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from models import *
 from map.models import *
 from items.models import *
+from chat.models import ServerMessage
 
 def player_list(request):
     
@@ -43,7 +44,6 @@ def player_view(request, player_id):
             # @@@ check the hub is off this lot
             destination = Hub.objects.get(id=destination_id)
             player.location.move_to_hub(destination)
-        # pickup_pile, drop_pile
         elif "pickup_pile" in request.POST:
             # @@@ check pile is here and quantity is valid
             pile_id = request.POST["pickup_pile"]
@@ -53,8 +53,8 @@ def player_view(request, player_id):
                 pile.reduce(quantity)
                 player.add_to_inventory(pile.item_type, quantity)
             else:
-                # FIXME: Needs to raise an error
-                pass
+                msg = ServerMessage(message="That is too heavy for you to pick up.", to_player=player)
+                msg.save()
         elif "drop_pile" in request.POST:
             # @@@ check pile belongs to player and quantity is valid
             pile_id = request.POST["drop_pile"]
